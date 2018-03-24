@@ -24,7 +24,7 @@ class Person {
     }
 }
 
-pp = new Person("Erika", "Mustermann");
+let pp = new Person("Erika", "Mustermann");
 console.log(pp); // Person {first: "Erika", last: "Mustermann"}
 console.log(pp.initials()); // "EM"
 console.log(pp.fullName()); // "Erika Mustermann"
@@ -44,7 +44,7 @@ class Developer extends Person {
     }
 }
 
-window.dd = new Developer("John", "Doe", "JS");
+let dd = new Developer("John", "Doe", "JS");
 console.log(dd); // Developer {first: "John", last: "Doe", language: "JS"}
 console.log(dd.initials()); // "JD"
 console.log(dd.fullName()); // "John Doe, JS dev"
@@ -63,68 +63,64 @@ const countKeysMixin = base =>
         }
     };
 
-    class PersonWithTwoMixins extends toJsonMixin(countKeysMixin(Person)) {
-        toJson() { 
-            // redefine the method, just for the sake of it
-             return "NEW TOJSON " + super.toJson();
-        }
+class PersonWithTwoMixins extends toJsonMixin(countKeysMixin(Person)) {
+    toJson() {
+        // redefine the method, just for the sake of it
+        return "NEW TOJSON " + super.toJson();
+    }
+}
+
+let p2m = new PersonWithTwoMixins("Jane", "Roe");
+console.log(p2m);
+console.log(p2m.toJson()); // NEW TOJSON {"first":"Jane","last":"Roe"}
+console.log(p2m.countKeys()); // 2
+
+class ExtDate extends Date {
+    fullDate() {
+        const months = [
+            "JAN",
+            "FEB",
+            "MAR",
+            "APR",
+            "MAY",
+            "JUN",
+            "JUL",
+            "AUG",
+            "SEP",
+            "OCT",
+            "NOV",
+            "DEC"
+        ];
+
+        return (
+            months[this.getMonth()] +
+            " " +
+            String(this.getDate()).padStart(2, "0") +
+            " " +
+            this.getFullYear()
+        );
     }
 
-    
-    p2m = new PersonWithTwoMixins("Jane", "Roe");
-    console.log(p2m);
-    console.log(p2m.toJson());    // NEW TOJSON {"first":"Jane","last":"Roe"}
-    console.log(p2m.countKeys()); // 2
-
-
-
-    class ExtDate extends Date {
-        fullDate() {
-            const months = [
-                "JAN",
-                "FEB",
-                "MAR",
-                "APR",
-                "MAY",
-                "JUN",
-                "JUL",
-                "AUG",
-                "SEP",
-                "OCT",
-                "NOV",
-                "DEC"
-            ];
-    
-            return (
-                months[this.getMonth()] + 
-                " " +
-                String(this.getDate()).padStart(2, "0") +
-                " " +
-                this.getFullYear()
-            );
-        }
-    
-    
-        static getMonthName(m) {
-            const months = [
-                "JAN",
-                "FEB",
-                // etc...
-                "NOV",
-                "DEC"
-            ];
-            return months[m];
-        }
-    
-        fullDate2() {
-            return (
-                ExtDate.getMonthName(this.getMonth()) +
-                " " +
-                String(this.getDate()).padStart(2, "0") +
-                " " +
-                this.getFullYear()
-            );
-        }
+    static getMonthName(m) {
+        const months = [
+            "JAN",
+            "FEB",
+            // etc...
+            "NOV",
+            "DEC"
+        ];
+        return months[m];
     }
-    
-    console.log(new ExtDate().fullDate()); // "MAY 01 2018"
+
+    fullDate2() {
+        return (
+            ExtDate.getMonthName(this.getMonth()) +
+            " " +
+            String(this.getDate()).padStart(2, "0") +
+            " " +
+            this.getFullYear()
+        );
+    }
+}
+
+console.log(new ExtDate().fullDate()); // "MAY 01 2018"
