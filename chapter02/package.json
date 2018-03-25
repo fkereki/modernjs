@@ -6,6 +6,8 @@
     "scripts": {
         "build": "babel src -d out",
         "buildNode": "flow-remove-types src/ -d out/",
+        "addTypes": "flow-typed install",
+        "update": "npm install && flow-typed install",
         "flow": "flow",
         "eslint": "eslint src",
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +15,10 @@
     "author": "Federico Kereki",
     "license": "ISC",
     "babel": {
-        "presets": ["env", "flow"]
+        "presets": [
+            "env",
+            "flow"
+        ]
     },
     "eslintConfig": {
         "parserOptions": {
@@ -25,8 +30,14 @@
             "browser": true,
             "node": true
         },
-        "extends": ["eslint:recommended", "plugin:flowtype/recommended"],
-        "plugins": ["babel", "flowtype"],
+        "extends": [
+            "eslint:recommended",
+            "plugin:flowtype/recommended"
+        ],
+        "plugins": [
+            "babel",
+            "flowtype"
+        ],
         "rules": {
             "no-console": "off"
         }
@@ -35,7 +46,10 @@
         "tabWidth": 4,
         "printWidth": 75
     },
-    "dependencies": {},
+    "dependencies": {
+        "fetch": "^1.1.0",
+        "moment": "^2.21.0"
+    },
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-eslint": "^8.2.2",
@@ -46,6 +60,7 @@
         "eslint-plugin-flowtype": "^2.46.1",
         "flow-bin": "^0.68.0",
         "flow-remove-types": "^1.2.3",
+        "flow-typed": "^2.4.0",
         "prettier": "^1.11.1"
     }
 }
