@@ -1,6 +1,6 @@
 /* @flow */
 
-import myCounter from "/home/fkereki/MODERNJS/chapter02/src/module_counter.SIMPLE.js";
+import myCounter from "./module_counter.1.js";
 
 /*
     Initialize the counter appropriately
