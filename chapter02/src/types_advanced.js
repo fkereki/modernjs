@@ -20,7 +20,7 @@ class Person {
     first: string;
     last: string;
 
-    constructor(first, last) {
+    constructor(first: string, last: string) {
         this.first = first;
         this.last = last;
     }
