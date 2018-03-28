@@ -15,10 +15,7 @@
     "author": "Federico Kereki",
     "license": "ISC",
     "babel": {
-        "presets": [
-            "env",
-            "flow"
-        ]
+        "presets": ["env", "flow"]
     },
     "eslintConfig": {
         "parserOptions": {
@@ -28,16 +25,11 @@
         "parser": "babel-eslint",
         "env": {
             "browser": true,
-            "node": true
+            "node": true,
+            "es6": true
         },
-        "extends": [
-            "eslint:recommended",
-            "plugin:flowtype/recommended"
-        ],
-        "plugins": [
-            "babel",
-            "flowtype"
-        ],
+        "extends": ["eslint:recommended", "plugin:flowtype/recommended"],
+        "plugins": ["babel", "flowtype"],
         "rules": {
             "no-console": "off"
         }
@@ -47,6 +39,7 @@
         "printWidth": 75
     },
     "dependencies": {
+        "axios": "^0.18.0",
         "fetch": "^1.1.0",
         "moment": "^2.21.0"
     },
