@@ -1,3 +1,5 @@
+/* @flow */
+
 const axios = require("axios");
 
 const BASE_URL = "https://weather.com/en-IN/weather/today/l/";
