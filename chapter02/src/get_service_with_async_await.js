@@ -14,7 +14,7 @@ async function getMontevideo() {
     try {
         const montevideoData = await get_weather(MONTEVIDEO_UY);
 
-        console.log("Montevideo, with promises");
+        console.log("Montevideo, with async/await");
         console.log(`Montevideo: ${montevideoData.data.length} bytes`);
     } catch (error) {
         console.log(error.message);
