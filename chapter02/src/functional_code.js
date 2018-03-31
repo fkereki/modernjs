@@ -1,9 +1,9 @@
 /* @flow */
 
 type genericFunction = (...args: Array<mixed>) => mixed;
-type higherOrderFunction = genericFunction => genericFunction;
+type voidFunction = (...args: Array<mixed>) => void;
 
-const once: higherOrderFunction = (fn: genericFunction) => {
+const once = (fn: genericFunction): voidFunction => {
     let done = false;
     return (...args) => {
         if (!done) {
