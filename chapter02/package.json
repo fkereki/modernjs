@@ -9,6 +9,7 @@
         "addTypes": "flow-typed install",
         "update": "npm install && flow-typed install",
         "flow": "flow",
+        "flow-coverage": "flow-coverage-report",
         "eslint": "eslint src",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -36,6 +37,14 @@
             "prefer-const": "error"
         }
     },
+    "flow-coverage-report": {
+        "concurrentFiles": 1,
+        "excludeGlob": ["node_modules/**"],
+        "includeGlob": ["src/**/*.js"],
+        "threshold": 90,
+        "type": ["text", "html", "json"]
+    },
+
     "prettier": {
         "tabWidth": 4,
         "printWidth": 75
@@ -54,6 +63,7 @@
         "eslint-config-recommended": "^2.0.0",
         "eslint-plugin-flowtype": "^2.46.1",
         "flow-bin": "^0.68.0",
+        "flow-coverage-report": "^0.5.0",
         "flow-remove-types": "^1.2.3",
         "flow-typed": "^2.4.0",
         "prettier": "^1.11.1"
