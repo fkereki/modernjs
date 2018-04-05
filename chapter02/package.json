@@ -37,6 +37,7 @@
             "prefer-const": "error"
         }
     },
+    "eslintIgnore": ["**/out/*.js"],
     "flow-coverage-report": {
         "concurrentFiles": 1,
         "excludeGlob": ["node_modules/**"],
