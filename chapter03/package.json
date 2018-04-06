@@ -5,6 +5,11 @@
     "main": "index.js",
     "scripts": {
         "build": "flow-remove-types src/ -d out/",
+        "buildWithMaps":
+            "flow-remove-types src/ -d out/ --pretty --sourcemaps",
+        "start": "npm run build && node out/doroundmath.js",
+        "nodemon":
+            "./node_modules/nodemon/bin/nodemon.js --watch src --delay 1 --exec npm start",
         "addTypes": "flow-typed install",
         "update": "npm install && flow-typed install",
         "flow": "flow",
@@ -62,6 +67,7 @@
         "flow-coverage-report": "^0.5.0",
         "flow-remove-types": "^1.2.3",
         "flow-typed": "^2.4.0",
+        "nodemon": "^1.17.3",
         "prettier": "^1.11.1"
     }
 }
