@@ -7,6 +7,7 @@
         "build": "flow-remove-types src/ -d out/",
         "buildWithMaps": "flow-remove-types src/ -d out/ --pretty --sourcemaps",
         "start": "npm run build && node out/doroundmath.js",
+        "start-db": "npm run build && node out/dbaccess.js",
         "nodemon": "nodemon --watch src --delay 1 --exec npm start",
         "addTypes": "flow-typed install",
         "update": "npm install && flow-typed install",
@@ -71,7 +72,8 @@
         "printWidth": 75
     },
     "dependencies": {
-        "axios": "^0.18.0"
+        "axios": "^0.18.0",
+        "mariasql": "^0.2.6"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.2",

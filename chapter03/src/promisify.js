@@ -22,9 +22,10 @@ showFileLength1(FILE_TO_READ);
 // 2. Alternative style using promises
 
 function showFileLength2(fileName: string): void {
-    const readFile = util.promisify(fs.readFile);
+    fs.readFile = util.promisify(fs.readFile);
 
-    readFile(fileName, "utf8")
+    fs
+        .readFile(fileName, "utf8")
         .then((text: string) => {
             console.log(`2. Reading with promises: ${text.length} bytes`);
         })
@@ -37,10 +38,10 @@ showFileLength2(FILE_TO_READ);
 // 3. Using async/await, and with an arrow function just for variety
 
 const showFileLength3 = async (fileName: string) => {
-    const readFile = util.promisify(fs.readFile);
+    fs.readFile = util.promisify(fs.readFile);
 
     try {
-        const text: string = await readFile(fileName, "utf8");
+        const text: string = await fs.readFile(fileName, "utf8");
         console.log(`3. Reading with async/await: ${text.length} bytes`);
     } catch (err) {
         throw err;
