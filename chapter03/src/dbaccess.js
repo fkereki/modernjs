@@ -63,14 +63,6 @@ async function addSeekAndDeleteCountry(dbConn) {
         await dbConn.query(preppedInsert);
 
         /*
-            1b. Alternative way, with placeholders
-        await dbConn.query(
-            "INSERT INTO countries (countryCode, countryName) VALUES (?, ?)",
-            [code, name]
-        );
-        */
-
-        /*
             2. Seek the recently added country
         */
         const getAdams = `SELECT * FROM countries WHERE countryCode="${code}"`;
@@ -82,15 +74,33 @@ async function addSeekAndDeleteCountry(dbConn) {
         );
 
         /*
-            3. Drop the new country
+            3. Update the country, but using placeholders
+        */
+        await dbConn.query(
+            `UPDATE countries SET countryName=? WHERE countryCode=?`,
+            ["NEW NAME", code]
+        );
+
+        /*
+            4. Check the new data, but returning arrays instead of objects
+        */
+        const adams2 = await dbConn.query(
+            `SELECT * FROM countries WHERE countryCode=?`,
+            [code],
+            { useArray: true }
+        );
+        console.log(adams2.length, adams2[0][0], adams2[0][1]);
+
+        /*
+            5. Drop the new country
         */
         await dbConn.query(`DELETE FROM countries WHERE countryCode="42"`);
 
         /*
-            4. Verify that the country is no more
+            6. Verify that the country is no more
         */
-        const adams2 = await dbConn.query(getAdams);
-        console.log(adams2.length);
+        const adams3 = await dbConn.query(getAdams);
+        console.log(adams3.length);
     } catch (e) {
         console.log("Unexpected error", e);
     }
