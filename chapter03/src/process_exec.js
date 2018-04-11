@@ -1,22 +1,15 @@
 /* @flow */
+"use strict";
 
 const child_process = require("child_process");
 const { promisify } = require("util");
 
 child_process.exec = promisify(child_process.exec);
 
-async function getDirectory(path: ?string) {
+async function getDirectoryJs(path: string) {
     try {
         const cmd = "ls -ld -1 *.js";
-
-        let stdout;
-        if (typeof path === "undefined") {
-            ({ stdout } = await child_process.exec(cmd));
-        } else {
-            // $FlowFixMe: Flow doesn't understand "promisify()"
-            ({ stdout } = await child_process.exec(cmd, { cwd: path }));
-        }
-
+        const stdout = await child_process.exec(cmd, { cwd: path });
         console.log("OUT", path || "");
         console.log(stdout);
     } catch (e) {
@@ -24,19 +17,12 @@ async function getDirectory(path: ?string) {
     }
 }
 
-getDirectory();
+getDirectoryJs("/boot");
 /*
-OUT
--rw-r--r-- 1 fkereki users 3336 Apr 10 13:12 dbaccess.js
--rw-r--r-- 1 fkereki users  319 Apr 10 13:12 doroundmath.js
--rw-r--r-- 1 fkereki users  890 Apr 10 13:12 flowcomments.js
--rw-r--r-- 1 fkereki users  293 Apr 10 13:12 miniserver.js
--rw-r--r-- 1 fkereki users  751 Apr 10 13:12 process_exec.js
--rw-r--r-- 1 fkereki users 1311 Apr 10 13:12 promisify.js
--rw-r--r-- 1 fkereki users  828 Apr 10 13:12 roundmath.js
+ERR ls: cannot access '*.js': No such file or directory
 */
 
-getDirectory("/home/fkereki/MODERNJS/chapter03/flow-typed/npm");
+getDirectoryJs("/home/fkereki/MODERNJS/chapter03/flow-typed/npm");
 /*
 OUT /home/fkereki/MODERNJS/chapter03/flow-typed/npm
 -rw-r--r-- 1 fkereki users  4791 Apr  9 12:52 axios_v0.18.x.js

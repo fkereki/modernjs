@@ -1,3 +1,6 @@
+/* @flow */
+"use strict";
+
 const fs = require("fs");
 
 process.stdin.resume();
@@ -8,9 +11,7 @@ process.stdin.on("data", path => {
         .readdirSync(path)
         .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
         .filter(file => !file.startsWith("."))
-        .forEach(file => {
-            process.stdout.write(file + "\n");
-        });
+        .forEach(file => process.stdout.write(file + "\n"));
 
     process.stdout.end();
 });
