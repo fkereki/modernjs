@@ -16,7 +16,10 @@
     "author": "Federico Kereki",
     "license": "ISC",
     "babel": {
-        "presets": ["env", "flow"]
+        "presets": [
+            "env",
+            "flow"
+        ]
     },
     "eslintConfig": {
         "parserOptions": {
@@ -29,23 +32,38 @@
             "node": true,
             "es6": true
         },
-        "extends": ["eslint:recommended", "plugin:flowtype/recommended"],
-        "plugins": ["babel", "flowtype"],
+        "extends": [
+            "eslint:recommended",
+            "plugin:flowtype/recommended"
+        ],
+        "plugins": [
+            "babel",
+            "flowtype"
+        ],
         "rules": {
             "no-console": "off",
             "no-var": "error",
             "prefer-const": "error"
         }
     },
-    "eslintIgnore": ["**/out/*.js"],
+    "eslintIgnore": [
+        "**/out/*.js"
+    ],
     "flow-coverage-report": {
         "concurrentFiles": 1,
-        "excludeGlob": ["node_modules/**"],
-        "includeGlob": ["src/**/*.js"],
+        "excludeGlob": [
+            "node_modules/**"
+        ],
+        "includeGlob": [
+            "src/**/*.js"
+        ],
         "threshold": 90,
-        "type": ["text", "html", "json"]
+        "type": [
+            "text",
+            "html",
+            "json"
+        ]
     },
-
     "prettier": {
         "tabWidth": 4,
         "printWidth": 75

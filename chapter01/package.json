@@ -13,7 +13,10 @@
     "author": "Federico Kereki",
     "license": "ISC",
     "babel": {
-        "presets": ["env", "flow"]
+        "presets": [
+            "env",
+            "flow"
+        ]
     },
     "eslintConfig": {
         "parserOptions": {
@@ -25,8 +28,13 @@
             "browser": true,
             "node": true
         },
-        "extends": ["eslint:recommended", "plugin:flowtype/recommended"],
-        "plugins": ["flowtype"],
+        "extends": [
+            "eslint:recommended",
+            "plugin:flowtype/recommended"
+        ],
+        "plugins": [
+            "flowtype"
+        ],
         "rules": {
             "no-console": "off"
         }
