@@ -7,7 +7,7 @@ const app = express();
 
 app.get("/", (req, res) => res.send("Server alive, with Express!"));
 
-app.use(
+app.get(
     "/static",
     express.static(path.join(__dirname, "../flags"), {
         immutable: true,
