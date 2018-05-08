@@ -15,6 +15,11 @@ app.get(
     })
 );
 
+app.use((err, req, res, next) => {
+    console.error("Error....", err.message);
+    res.status(500).send("INTERNAL SERVER ERROR");
+});
+
 app.listen(8080, () =>
     console.log(
         "Mini Express static server ready at http://localhost:8080/!"

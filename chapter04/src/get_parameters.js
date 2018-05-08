@@ -7,7 +7,7 @@ const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended:false}));
 
-app.use("/", (req, res) => {
+app.use("*", (req, res) => {
     console.log(req.query, req.body);
     res.send("Server alive, with Express!");
 });
