@@ -9,7 +9,7 @@ routerCountries.get("/", (req, res) => {
     res.send(`All countries... path=${req.originalUrl}`);
 });
 
-routerCountries.get("/UY", (req, res) => {
+routerCountries.get("/URUGUAY", (req, res) => {
     res.send(`GET UY (Uruguay)... path=${req.originalUrl}`);
 });
 

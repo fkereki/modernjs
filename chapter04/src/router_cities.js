@@ -10,15 +10,15 @@ routerCities.get("/MVD", (req, res) => {
 });
 
 routerCities.get("/:id", (req, res) => {
-    res.send(`GET City... path=${req.originalUrl}`);
+    res.send(`GET City... ${req.params.id}`);
 });
 
 routerCities.delete("/:id", (req, res) => {
-    res.send(`DELETE City... path=${req.originalUrl}`);
+    res.send(`DELETE City... ${req.params.id}`);
 });
 
 routerCities.post("/", (req, res) => {
-    res.send(`POST City... path=${req.originalUrl}`);
+    res.send(`POST City... ${req.params.id}`);
 });
 
 routerCities.put("/:id", (req, res) => {
