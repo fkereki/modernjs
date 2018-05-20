@@ -21,6 +21,7 @@
     "babel": {
         "presets": [
             "env",
+            "node",
             "flow"
         ]
     },
@@ -72,12 +73,15 @@
     },
     "dependencies": {
         "axios": "^0.18.0",
+        "cors": "^2.8.4",
         "express": "^4.16.3",
+        "helmet": "^3.12.1",
+        "jsonwebtoken": "^8.2.1",
         "mariasql": "^0.2.6"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.2",
-        "babel-preset-env": "^1.6.1",
+        "babel-preset-env": "^1.7.0",
         "babel-preset-flow": "^6.23.0",
         "eslint": "^4.19.0",
         "eslint-config-recommended": "^2.0.0",
@@ -86,7 +90,7 @@
         "flow-coverage-report": "^0.5.0",
         "flow-remove-types": "^1.2.3",
         "flow-typed": "^2.4.0",
-        "nodemon": "^1.17.3",
+        "nodemon": "^1.17.4",
         "prettier": "^1.11.1"
     }
 }
