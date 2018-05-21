@@ -13,8 +13,7 @@ const dbConn = require("./restful_db.js");
 const {
     getRegion,
     deleteRegion,
-    putRegion,
-    postRegion
+    putRegion
 } = require("./restful_regions.js");
 
 const SECRET_JWT_KEY = "modernJSbook";
@@ -77,10 +76,14 @@ app.delete("/regions/:country/:region", (req, res) =>
 );
 
 app.put("/regions/:country/:region", (req, res) =>
-    putRegion(res, dbConn, req.params.country, req.params.region)
+    putRegion(
+        res,
+        dbConn,
+        req.params.country,
+        req.params.region,
+        req.body.name
+    )
 );
-
-app.post("/regions", (req, res) => postRegion(res, dbConn));
 
 // END OF ROUTING FOR REGIONS
 
