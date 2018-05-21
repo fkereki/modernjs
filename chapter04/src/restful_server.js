@@ -13,6 +13,7 @@ const dbConn = require("./restful_db.js");
 const {
     getRegion,
     deleteRegion,
+    postRegion,
     putRegion
 } = require("./restful_regions.js");
 
@@ -73,6 +74,10 @@ app.get("/regions/:country/:region/", (req, res) =>
 
 app.delete("/regions/:country/:region", (req, res) =>
     deleteRegion(res, dbConn, req.params.country, req.params.region)
+);
+
+app.post("/regions/:country", (req, res) =>
+    postRegion(res, dbConn, req.params.country, req.body.name)
 );
 
 app.put("/regions/:country/:region", (req, res) =>

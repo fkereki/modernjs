@@ -85,6 +85,49 @@ const deleteRegion = async (
     }
 };
 
+const postRegion = async (
+    res: any,
+    dbConn: any,
+    country: string,
+    name: string
+) => {
+    try {
+        const sqlCountry = `
+            SELECT 1 
+            FROM countries
+            WHERE countryCode="${country}" 
+        `;
+        const countries = await dbConn.query(sqlCountry);
+        if (countries.length === 0) {
+            res.status(403).send("Country must exist");
+        }
+
+        const sqlGetId = `
+            SELECT MAX(regionCode) AS maxr 
+            FROM regions
+            WHERE countryCode="${country}" 
+        `;
+        const regions = await dbConn.query(sqlCountry);
+        const newId = regions.length === 0 ? 1 : 1 + regions[0].maxr;
+
+        const sqlAddRegion = `
+            INSERT INTO regions SET 
+            countryCode="${country}",
+            regionCode="${newId}",
+            regionName="${name}"
+        `;
+
+        const result = await dbConn.query(sqlAddRegion);
+        if (result.affectedRows > 0) {
+            res.status(201).send("Region created");
+        } else {
+            res.status(409).send("Region not created");
+        }
+    } catch (e) {
+        res.status(500).send("Server error");
+    }
+};
+
 const putRegion = async (
     res: any,
     dbConn: any,
@@ -93,54 +136,22 @@ const putRegion = async (
     name: string
 ) => {
     try {
-        const sqlCountry = `
-            SELECT 1 FROM countries
-            WHERE countryCode="${country}" 
-        `;
-        const countries = await dbConn.query(sqlCountry);
-        if (countries.length === 0) {
-            res.status(403).send("Country must exist");
-        }
-
-        const sqlGetRegion = `
-            SELECT 1 
-            FROM regions
+        const sqlUpdateRegion = `
+            UPDATE regions
+            SET regionName="${name}"
             WHERE countryCode="${country}" 
             AND regionCode="${region}" 
         `;
-        const regions = await dbConn.query(sqlGetRegion);
-        if (regions.length === 0) {
-            const sqlAddRegion = `
-                INSERT INTO regions SET 
-                countryCode="${country}",
-                regionCode="${region}",
-                regionName="${name}"
-            `;
 
-            const result = await dbConn.query(sqlAddRegion);
-            if (result.affectedRows > 0) {
-                res.status(201).send("Region created");
-            } else {
-                res.status(409).send("Region not created");
-            }
+        const result = await dbConn.query(sqlUpdateRegion);
+        if (result.affectedRows > 0) {
+            res.status(204).send("Region updated");
         } else {
-            const sqlUpdateRegion = `
-                UPDATE regions
-                SET regionName="${name}"
-                WHERE countryCode="${country}" 
-                AND regionCode="${region}" 
-            `;
-
-            const result = await dbConn.query(sqlUpdateRegion);
-            if (result.affectedRows > 0) {
-                res.status(204).send("Region updated");
-            } else {
-                res.status(409).send("Region not updated");
-            }
+            res.status(409).send("Region not updated");
         }
     } catch (e) {
         res.status(500).send("Server error");
     }
 };
 
-module.exports = { getRegion, deleteRegion, putRegion };
+module.exports = { getRegion, deleteRegion, postRegion, putRegion };
