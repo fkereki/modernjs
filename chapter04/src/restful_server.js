@@ -8,13 +8,18 @@ const bodyParser = require("body-parser");
 
 const validateUser = require("./validate_user.js");
 
+const dbConn = require("./restful_db.js");
+
+const {
+    getRegion,
+    deleteRegion,
+    putRegion,
+    postRegion
+} = require("./restful_regions.js");
+
 const SECRET_JWT_KEY = "modernJSbook";
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.get("/public", (req, res) => {
-    res.send("the /public endpoint needs no token!");
-});
 
 app.post("/gettoken", (req, res) => {
     validateUser(req.body.user, req.body.password, (idErr, userid) => {
@@ -30,7 +35,7 @@ app.post("/gettoken", (req, res) => {
         }
     });
 });
-
+/*
 app.use((req, res, next) => {
     // First check for the Authorization header
     const authHeader = req.headers.authorization;
@@ -53,10 +58,31 @@ app.use((req, res, next) => {
         }
     });
 });
+*/
 
-app.get("/private", (req, res) => {
-    res.send("the /private endpoint needs JWT, but it was provided: OK!");
-});
+// START ROUTING FOR REGIONS
+
+app.get("/regions/", (req, res) => getRegion(res, dbConn));
+
+app.get("/regions/:country/", (req, res) =>
+    getRegion(res, dbConn, req.params.country)
+);
+
+app.get("/regions/:country/:region/", (req, res) =>
+    getRegion(res, dbConn, req.params.country, req.params.region)
+);
+
+app.delete("/regions/:country/:region", (req, res) =>
+    deleteRegion(res, dbConn, req.params.country, req.params.region)
+);
+
+app.put("/regions/:country/:region", (req, res) =>
+    putRegion(res, dbConn, req.params.country, req.params.region)
+);
+
+app.post("/regions", (req, res) => postRegion(res, dbConn));
+
+// END OF ROUTING FOR REGIONS
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
