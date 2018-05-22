@@ -3,12 +3,24 @@
 
 const express = require("express");
 const app = express();
-const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 
-const validateUser = require("./validate_user.js");
-
 const dbConn = require("./restful_db.js");
+
+app.get("/", (req, res) => res.send("Secure server!"));
+
+/*
+    Add here the logic for CORS
+*/
+const cors = require("cors");
+app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+/*
+    Add here the logic for providing a JWT at /gettoken
+    and the logic for validating a JWT, as shown earlier
+*/
 
 const {
     getRegion,
@@ -16,51 +28,6 @@ const {
     postRegion,
     putRegion
 } = require("./restful_regions.js");
-
-const SECRET_JWT_KEY = "modernJSbook";
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.post("/gettoken", (req, res) => {
-    validateUser(req.body.user, req.body.password, (idErr, userid) => {
-        if (idErr !== null) {
-            res.status(401).send(idErr);
-        } else {
-            jwt.sign(
-                { userid },
-                SECRET_JWT_KEY,
-                { algorithm: "HS256", expiresIn: "1h" },
-                (err, token) => res.status(200).send(token)
-            );
-        }
-    });
-});
-/*
-app.use((req, res, next) => {
-    // First check for the Authorization header
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        return res.status(401).send("No token specified");
-    }
-
-    // Now validate the token itself
-    const token = authHeader.split(" ")[1];
-
-    jwt.verify(token, SECRET_JWT_KEY, (err, decoded) => {
-        if (err) {
-            // Token bad formed, or expired, or other problem
-            return res.status(403).send("Token expired or not valid");
-        } else {
-            // Token OK; get the user id from it
-            req.userid = decoded.userid;
-            // Keep processing the request
-            next();
-        }
-    });
-});
-*/
-
-// START ROUTING FOR REGIONS
 
 app.get("/regions/", (req, res) => getRegion(res, dbConn));
 
@@ -90,14 +57,22 @@ app.put("/regions/:country/:region", (req, res) =>
     )
 );
 
-// END OF ROUTING FOR REGIONS
-
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     console.error("Error....", err.message);
     res.status(500).send("INTERNAL SERVER ERROR");
 });
 
-app.listen(8080, () =>
-    console.log("Mini JWT server ready, at http://localhost:8080/!")
-);
+/*
+    Add here the logic for HTTPS
+*/
+
+const https = require("https");
+const fs = require("fs");
+const path = require("path");
+const keysPath = path.join(__dirname, "../../certificates");
+const ca = fs.readFileSync(`${keysPath}/modernjsbook.csr`);
+const cert = fs.readFileSync(`${keysPath}/modernjsbook.crt`);
+const key = fs.readFileSync(`${keysPath}/modernjsbook.key`);
+
+https.createServer({ ca, cert, key }, app).listen(8443);

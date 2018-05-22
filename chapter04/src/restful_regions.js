@@ -1,8 +1,6 @@
 /* @flow */
 "use strict";
 
-/* eslint-disable */
-
 const getRegion = async (
     res: any,
     dbConn: any,
@@ -13,15 +11,26 @@ const getRegion = async (
         let sqlQuery = "";
         if (country == null) {
             sqlQuery = `
-                SELECT rr.*, cc.countryName 
+                SELECT rr.* 
                 FROM regions rr 
                 JOIN countries cc 
                 ON cc.countryCode=rr.countryCode
                 ORDER BY cc.countryCode, rr.regionCode
         `;
-        } else if (id == null) {
+        } else if (region == null) {
             sqlQuery = `
-                SELECT rr.*, cc.countryName 
+                SELECT 1
+                FROM countries
+                WHERE countryCode="${country}"
+            `;
+
+            const countries = await dbConn.query(sqlQuery);
+            if (countries.length === 0) {
+                return res.status(404).send("Country not found");
+            }
+
+            sqlQuery = `
+                SELECT rr.* 
                 FROM regions rr 
                 JOIN countries cc 
                 ON cc.countryCode=rr.countryCode
@@ -30,7 +39,7 @@ const getRegion = async (
             `;
         } else {
             sqlQuery = `
-                SELECT rr.*, cc.countryName 
+                SELECT rr.* 
                 FROM regions rr 
                 JOIN countries cc 
                 ON cc.countryCode=rr.countryCode
@@ -40,12 +49,16 @@ const getRegion = async (
         }
 
         const regions = await dbConn.query(sqlQuery);
-        res
-            .status(200)
-            .set("Content-Type", "application/json")
-            .send(JSON.stringify(regions));
+        if (regions.length > 0 || region === null) {
+            res
+                .status(200)
+                .set("Content-Type", "application/json")
+                .send(JSON.stringify(regions));
+        } else {
+            res.status(404).send("Not found");
+        }
     } catch (e) {
-        res.status(500).send("Server error");
+        res.status(500).send("Server error 1");
     }
 };
 
@@ -60,11 +73,11 @@ const deleteRegion = async (
             SELECT 1 FROM cities 
             WHERE countryCode="${country}" 
             AND regionCode="${region}" 
-            LIMIT 1"     
+            LIMIT 1     
         `;
         const cities = await dbConn.query(sqlCities);
         if (cities.length > 0) {
-            res.status(403).send("Cannot delete a region with cities");
+            res.status(405).send("Cannot delete a region with cities");
         } else {
             const deleteRegion = `
                 DELETE FROM regions 
@@ -73,8 +86,7 @@ const deleteRegion = async (
             `;
 
             const result = await dbConn.query(deleteRegion);
-
-            if (result.affectedRows > 0) {
+            if (result.info.affectedRows > 0) {
                 res.status(204).send("Region deleted");
             } else {
                 res.status(404).send("Region not found");
@@ -91,6 +103,10 @@ const postRegion = async (
     country: string,
     name: string
 ) => {
+    if (!name) {
+        return res.status(400).send("Missing name");
+    }
+
     try {
         const sqlCountry = `
             SELECT 1 
@@ -103,12 +119,13 @@ const postRegion = async (
         }
 
         const sqlGetId = `
-            SELECT MAX(regionCode) AS maxr 
+            SELECT MAX(CAST(regionCode AS INTEGER)) AS maxr 
             FROM regions
             WHERE countryCode="${country}" 
         `;
-        const regions = await dbConn.query(sqlCountry);
-        const newId = regions.length === 0 ? 1 : 1 + regions[0].maxr;
+        const regions = await dbConn.query(sqlGetId);
+        const newId =
+            regions.length === 0 ? 1 : 1 + Number(regions[0].maxr);
 
         const sqlAddRegion = `
             INSERT INTO regions SET 
@@ -118,8 +135,11 @@ const postRegion = async (
         `;
 
         const result = await dbConn.query(sqlAddRegion);
-        if (result.affectedRows > 0) {
-            res.status(201).send("Region created");
+        if (result.info.affectedRows > 0) {
+            res
+                .status(201)
+                .header("Location", `/regions/${country}/${newId}`)
+                .send("Region created");
         } else {
             res.status(409).send("Region not created");
         }
@@ -135,6 +155,10 @@ const putRegion = async (
     region: string,
     name: string
 ) => {
+    if (!name) {
+        return res.status(400).send("Missing name");
+    }
+
     try {
         const sqlUpdateRegion = `
             UPDATE regions
@@ -144,7 +168,8 @@ const putRegion = async (
         `;
 
         const result = await dbConn.query(sqlUpdateRegion);
-        if (result.affectedRows > 0) {
+
+        if (result.info.affectedRows > 0) {
             res.status(204).send("Region updated");
         } else {
             res.status(409).send("Region not updated");
