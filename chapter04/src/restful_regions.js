@@ -58,7 +58,7 @@ const getRegion = async (
             res.status(404).send("Not found");
         }
     } catch (e) {
-        res.status(500).send("Server error 1");
+        res.status(500).send("Server error");
     }
 };
 
@@ -87,7 +87,7 @@ const deleteRegion = async (
 
             const result = await dbConn.query(deleteRegion);
             if (result.info.affectedRows > 0) {
-                res.status(204).send("Region deleted");
+                res.status(204).send();
             } else {
                 res.status(404).send("Region not found");
             }
@@ -170,7 +170,7 @@ const putRegion = async (
         const result = await dbConn.query(sqlUpdateRegion);
 
         if (result.info.affectedRows > 0) {
-            res.status(204).send("Region updated");
+            res.status(204).send();
         } else {
             res.status(409).send("Region not updated");
         }

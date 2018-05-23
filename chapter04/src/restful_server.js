@@ -11,9 +11,10 @@ app.get("/", (req, res) => res.send("Secure server!"));
 
 /*
     Add here the logic for CORS
-*/
+
 const cors = require("cors");
 app.use(cors());
+*/
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -31,8 +32,11 @@ const {
 
 app.get("/regions/", (req, res) => getRegion(res, dbConn));
 
-app.get("/regions/:country/", (req, res) =>
-    getRegion(res, dbConn, req.params.country)
+app.get(
+    "/regions/:country/",
+    (req, res) => (
+        console.log(req), getRegion(res, dbConn, req.params.country)
+    )
 );
 
 app.get("/regions/:country/:region/", (req, res) =>
@@ -65,7 +69,6 @@ app.use((err, req, res, next) => {
 
 /*
     Add here the logic for HTTPS
-*/
 
 const https = require("https");
 const fs = require("fs");
@@ -76,3 +79,9 @@ const cert = fs.readFileSync(`${keysPath}/modernjsbook.crt`);
 const key = fs.readFileSync(`${keysPath}/modernjsbook.key`);
 
 https.createServer({ ca, cert, key }, app).listen(8443);
+
+    and remove the following line if HTTPS is used
+*/
+app.listen(8080, () =>
+    console.log("Routing ready at http://localhost:8080")
+);
