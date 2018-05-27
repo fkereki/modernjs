@@ -78,7 +78,8 @@
         "express": "^4.16.3",
         "helmet": "^3.12.1",
         "jsonwebtoken": "^8.2.1",
-        "mariasql": "^0.2.6"
+        "mariasql": "^0.2.6",
+        "winston": "^3.0.0-rc5"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.2",
