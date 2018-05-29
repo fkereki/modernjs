@@ -3,6 +3,8 @@
 
 const express = require("express");
 const winston = require("winston");
+const morgan = require("morgan");
+const fs = require("fs");
 
 const app = express();
 
@@ -42,10 +44,31 @@ const logger = winston.createLogger({
     ]
 });
 
-app.use((req, res, next) => {
-    logger.info(`${req.method} request for ${req.originalUrl}`);
-    next();
+const morganStream = fs.createWriteStream("serv_http_errors.log", {
+    flags: "a"
 });
+
+app.use(
+    morgan(
+        (tokens, req, res) =>
+            `${new Date().toISOString()} [http] ` +
+            `${tokens.method(req, res)} ${tokens.url(req, res)}`,
+        {
+            immediate: true,
+            stream: morganStream
+        }
+    )
+);
+
+app.use(
+    morgan(
+        `:date[iso] [http] ` +
+            `:method :url (:status) :res[content-length] - :response-time ms`,
+        {
+            skip: (req, res) => res.statusCode < 400
+        }
+    )
+);
 
 app.get("/", (req, res) => {
     logger.info("Doing some processing...");

@@ -3,6 +3,7 @@
 
 const express = require("express");
 const winston = require("winston");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -42,10 +43,16 @@ const logger = winston.createLogger({
     ]
 });
 
-app.use((req, res, next) => {
-    logger.info(`${req.method} request for ${req.originalUrl}`);
-    next();
-});
+app.use(
+    morgan(
+        `:method :url (:status) :res[content-length] - :response-time ms`,
+        {
+            stream: {
+                write: message => logger.info(message.trim())
+            }
+        }
+    )
+);
 
 app.get("/", (req, res) => {
     logger.info("Doing some processing...");
