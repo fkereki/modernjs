@@ -94,6 +94,7 @@
         "flow-coverage-report": "^0.5.0",
         "flow-remove-types": "^1.2.3",
         "flow-typed": "^2.4.0",
+        "jest": "^23.0.1",
         "nodemon": "^1.17.5",
         "prettier": "^1.11.1"
     }
