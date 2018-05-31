@@ -10,7 +10,7 @@ describe("deleteRegion", () => {
         const mDb = { query: jest.fn() };
         mDb.query.mockReturnValueOnce(Promise.resolve([1]));
         const mRes = new mockRes.createResponse();
-        await deleteRegion(mRes, mDb, "UY", "11");
+        await deleteRegion(mRes, mDb, "FK", "22");
         expect(mRes.statusCode).toBe(405);
     });
 
@@ -24,7 +24,7 @@ describe("deleteRegion", () => {
                 })
             );
         const mRes = new mockRes.createResponse();
-        await deleteRegion(mRes, mDb, "UY", "11");
+        await deleteRegion(mRes, mDb, "ST", "12");
         expect(mRes.statusCode).toBe(204);
     });
 
@@ -38,7 +38,7 @@ describe("deleteRegion", () => {
                 })
             );
         const mRes = new mockRes.createResponse();
-        await deleteRegion(mRes, mDb, "UY", "11");
+        await deleteRegion(mRes, mDb, "IP", "24");
         expect(mRes.statusCode).toBe(404);
     });
 });
