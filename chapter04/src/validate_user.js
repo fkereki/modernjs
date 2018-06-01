@@ -13,7 +13,9 @@ const validateUser = (
     password: string,
     callback: (?string, ?string) => void
 ) => {
-    if (userName === "fkereki" && password === "modernjsbook") {
+    if (!userName || !password) {
+        callback("Missing user/password", null);
+    } else if (userName === "fkereki" && password === "modernjsbook") {
         callback(null, "fkereki"); // OK, send userName back
     } else {
         callback("Not valid user", null);
