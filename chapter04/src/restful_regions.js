@@ -48,6 +48,8 @@ const getRegion = async (
             `;
         }
 
+        res.set("Connection", "close");
+
         const regions = await dbConn.query(sqlQuery);
         if (regions.length > 0 || region === null) {
             res
@@ -69,6 +71,8 @@ const deleteRegion = async (
     region: string
 ) => {
     try {
+        res.set("Connection", "close");
+
         const sqlCities = `
             SELECT 1 FROM cities 
             WHERE countryCode="${country}" 
@@ -103,6 +107,8 @@ const postRegion = async (
     country: string,
     name: string
 ) => {
+    res.set("Connection", "close");
+
     if (!name) {
         return res.status(400).send("Missing name");
     }
@@ -155,6 +161,8 @@ const putRegion = async (
     region: string,
     name: string
 ) => {
+    res.set("Connection", "close");
+
     if (!name) {
         return res.status(400).send("Missing name");
     }

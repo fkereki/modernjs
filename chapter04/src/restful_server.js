@@ -32,11 +32,8 @@ const {
 
 app.get("/regions/", (req, res) => getRegion(res, dbConn));
 
-app.get(
-    "/regions/:country/",
-    (req, res) => (
-        console.log(req), getRegion(res, dbConn, req.params.country)
-    )
+app.get("/regions/:country/", (req, res) =>
+    getRegion(res, dbConn, req.params.country)
 );
 
 app.get("/regions/:country/:region/", (req, res) =>
