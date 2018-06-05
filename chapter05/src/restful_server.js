@@ -7,7 +7,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("../restful.json");
+const swaggerDocument = require("../swagger.json");
 
 const dbConn = require("./restful_db.js");
 const validateUser = require("./validate_user.js");

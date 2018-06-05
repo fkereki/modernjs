@@ -1,10 +1,13 @@
-openapi: "2.0.0"
+swagger: "2.0"
 info:
   description: "This is a RESTful API to access world data, including countries, regions, and cities."
   version: "1.0.0"
   title: "World Data API"
 
-host: "localhost:8443"
+host: "127.0.0.1:8443"
+schemes:
+- "http"
+
 tags:
 - name: "token"
   description: "Get a JWT for authorization"
@@ -14,8 +17,7 @@ tags:
   description: "Access the regions of countries"
 - name: "cities"
   description: "Access the world cities"
-schemes:
-- "http"
+
 
 paths:
   /gettoken:
@@ -32,19 +34,15 @@ paths:
           name: user
           required: true
           type: string
-          description: A person's name.
         - in: formData
           name: password
           required: true
           type: string
-          description: A person's favorite number.
       responses:
         200:
           description: A valid token to use for other requests
         401:
           description: "No token provided"
-        404:
-          description: "Country not found"
 
   /regions:
     get:
@@ -53,6 +51,12 @@ paths:
       summary: "Get all regions of all countries"
       produces:
         - application/json
+      parameters:
+        - in: header
+          name: "Authorization"
+          required: true
+          type: string
+          description: Authorization Token
       responses:
         200:
           description: "OK"
@@ -74,7 +78,7 @@ paths:
           type: string
           description: The new region's name.
         - in: header
-          name: "Authorization: Bearer"
+          name: "Authorization"
           required: true
           type: string
           description: Authorization Token
@@ -103,6 +107,11 @@ paths:
           description: "Country (id) whose regions are required"
           type: string
           required: true  
+        - in: header
+          name: "Authorization"
+          required: true
+          type: string
+          description: Authorization Token
       responses:
         200:
           description: "OK"
@@ -130,6 +139,11 @@ paths:
           description: "Region (id) that is required"
           type: string
           required: true  
+        - in: header
+          name: "Authorization"
+          required: true
+          type: string
+          description: Authorization Token
       responses:
         200:
           description: "OK"
@@ -154,6 +168,11 @@ paths:
           description: "Region (id) that is to be deleted"
           type: string
           required: true  
+        - in: header
+          name: "Authorization"
+          required: true
+          type: string
+          description: Authorization Token
       responses:
         204:
           description: "OK, region was deleted"
@@ -188,6 +207,11 @@ paths:
           required: true
           type: string
           description: The region's new name.
+        - in: header
+          name: "Authorization"
+          required: true
+          type: string
+          description: Authorization Token
       responses:
         204:
           description: "OK, region was updated"
@@ -197,18 +221,3 @@ paths:
           description: "No token provided"
         404:
           description: "Country not found"
-
-
-
-components:
-  securitySchemes:
-    JwtAuth:
-      type: apiKey
-      in: header
-      name: Authorization
-
-    bearerAuth:            # arbitrary name for the security scheme
-      type: apiKey
-      in: header
-      scheme: bearer
-      bearerFormat: JWT  
