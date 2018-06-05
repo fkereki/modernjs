@@ -48,10 +48,11 @@ const getRegion = async (
             `;
         }
 
+        res.set("Connection", "close");
+
         const regions = await dbConn.query(sqlQuery);
         if (regions.length > 0 || region === null) {
-            res
-                .status(200)
+            res.status(200)
                 .set("Content-Type", "application/json")
                 .send(JSON.stringify(regions));
         } else {
@@ -69,6 +70,8 @@ const deleteRegion = async (
     region: string
 ) => {
     try {
+        res.set("Connection", "close");
+
         const sqlCities = `
             SELECT 1 FROM cities 
             WHERE countryCode="${country}" 
@@ -103,6 +106,8 @@ const postRegion = async (
     country: string,
     name: string
 ) => {
+    res.set("Connection", "close");
+
     if (!name) {
         return res.status(400).send("Missing name");
     }
@@ -136,8 +141,7 @@ const postRegion = async (
 
         const result = await dbConn.query(sqlAddRegion);
         if (result.info.affectedRows > 0) {
-            res
-                .status(201)
+            res.status(201)
                 .header("Location", `/regions/${country}/${newId}`)
                 .send("Region created");
         } else {
@@ -155,6 +159,8 @@ const putRegion = async (
     region: string,
     name: string
 ) => {
+    res.set("Connection", "close");
+
     if (!name) {
         return res.status(400).send("Missing name");
     }

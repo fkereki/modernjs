@@ -1,0 +1,212 @@
+openapi: "3.0.0"
+info:
+  title: World Data RESTful API
+  description: "This is a RESTful API to access world data, including countries, regions, and cities."
+  version: "0.0.1"
+servers:
+  - url: http://127.0.0.1:8443
+
+tags:
+- name: "token"
+  description: "Get a JWT for authorization"
+- name: "countries"
+  description: "Access the world countries"
+- name: "regions"
+  description: "Access the regions of countries"
+- name: "cities"
+  description: "Access the world cities"
+
+paths:
+  /gettoken:
+    post:
+      tags:
+      - "token"
+      summary: "Get a token to authorize future requests"
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                password:
+                  type: string
+              required:
+                - user
+                - password
+      responses:
+        200:
+          description: A valid token to use for other requests
+        401:
+          description: "No token provided"
+        404:
+          description: "Country not found"
+
+  /regions:
+    get:
+      tags:
+      - "regions"
+      summary: "Get all regions of all countries"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "OK"
+        401:
+          description: "No token provided"
+          
+    post:
+      tags:
+      - "regions"
+      summary: "Add a region to a given country"
+      consumes: 
+        -  "application/x-www-form-urlencoded"
+      produces:
+        - text/plain
+      parameters:
+        - in: formData
+          name: name
+          required: true
+          type: string
+          description: The new region's name.
+        - in: header
+          name: "Authorization: Bearer"
+          required: true
+          type: string
+          description: Authorization Token
+      responses:
+        201:
+          description: "OK, created"
+        400:
+          description: "Name missing, region not created"
+        401:
+          description: "No token provided"
+        403:
+          description: "Country not found, region not created"
+        409:
+          description: "Other failure, region not created"  
+
+  /regions/{country}:
+    get:
+      tags:
+      - "regions"
+      summary: "Get all regions of a given country"
+      produces:
+        - application/json
+      parameters:
+        - name: country
+          in: path
+          description: "Country (id) whose regions are required"
+          type: string
+          required: true  
+      responses:
+        200:
+          description: "OK"
+        401:
+          description: "No token provided"
+        404:
+          description: "Country not found"
+
+  /regions/{country}/{id}:
+  
+    get:
+      tags:
+      - "regions"
+      summary: "Get a specific region of a given country"
+      produces:
+        - application/json
+      parameters:
+        - name: country
+          in: path
+          description: "Country (id) of the region"
+          type: string
+          required: true  
+        - name: id
+          in: path
+          description: "Region (id) that is required"
+          type: string
+          required: true  
+      responses:
+        200:
+          description: "OK"
+        401:
+          description: "No token provided"
+        404:
+          description: "Country not found"
+
+    delete:
+      tags:
+      - "regions"
+      summary: "Delete a specific region of a given country"
+      description: ""
+      parameters:
+        - name: country
+          in: path
+          description: "Country (id) of the region"
+          type: string
+          required: true  
+        - name: id
+          in: path
+          description: "Region (id) that is to be deleted"
+          type: string
+          required: true  
+      responses:
+        204:
+          description: "OK, region was deleted"
+        401:
+          description: "No token provided"
+        404:
+          description: "Region does not exist"
+        405:
+          description: "Region has cities, cannot be deleted"
+
+    put:
+      tags:
+      - "regions"
+      summary: "Update a specific region of a given country"
+      consumes: 
+        -  "application/x-www-form-urlencoded"
+      produces:
+        - text/plain
+      parameters:
+        - name: country
+          in: path
+          description: "Country (id) of the region"
+          type: string
+          required: true  
+        - name: id
+          in: path
+          description: "Region (id) that is to be deleted"
+          type: string
+          required: true  
+        - in: formData
+          name: name
+          required: true
+          type: string
+          description: The region's new name.
+      responses:
+        204:
+          description: "OK, region was updated"
+        400:
+          description: "Name missing, region not updated"
+        401:
+          description: "No token provided"
+        404:
+          description: "Country not found"
+
+
+
+components:
+  securitySchemes:
+    JwtAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+
+    bearerAuth:            # arbitrary name for the security scheme
+      type: apiKey
+      in: header
+      scheme: bearer
+      bearerFormat: JWT  

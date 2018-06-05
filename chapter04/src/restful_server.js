@@ -75,9 +75,8 @@ const ca = fs.readFileSync(`${keysPath}/modernjsbook.csr`);
 const cert = fs.readFileSync(`${keysPath}/modernjsbook.crt`);
 const key = fs.readFileSync(`${keysPath}/modernjsbook.key`);
 
-https.createServer({ ca, cert, key }, app).listen(8443);
+https.createServer({ ca, cert, key }, app);
 
-    and remove the following line if HTTPS is used
 */
 app.listen(8080, () =>
     console.log("Routing ready at http://localhost:8080")

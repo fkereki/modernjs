@@ -5,8 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "flow-remove-types src/ -d out/",
-        "buildWithMaps":
-            "flow-remove-types src/ -d out/ --pretty --sourcemaps",
+        "buildWithMaps": "flow-remove-types src/ -d out/ --pretty --sourcemaps",
         "start": "npm run build && node out/doroundmath.js",
         "start-db": "npm run build && node out/dbaccess.js",
         "nodemon": "nodemon --watch src --delay 1 --exec npm start",
@@ -16,12 +15,16 @@
         "flow-coverage": "flow-coverage-report",
         "eslint": "eslint src",
         "testNoCoverage": "jest out/",
-        "test": "jest out/ --coverage --no-cache"
+        "test": "jest out/ --coverage --no-cache",
+        "newman": "newman run postman_collection.json"
     },
     "author": "Federico Kereki",
     "license": "ISC",
     "babel": {
-        "presets": ["env", "flow"]
+        "presets": [
+            "env",
+            "flow"
+        ]
     },
     "eslintConfig": {
         "parserOptions": {
@@ -34,8 +37,14 @@
             "es6": true,
             "jest": true
         },
-        "extends": ["eslint:recommended", "plugin:flowtype/recommended"],
-        "plugins": ["babel", "flowtype"],
+        "extends": [
+            "eslint:recommended",
+            "plugin:flowtype/recommended"
+        ],
+        "plugins": [
+            "babel",
+            "flowtype"
+        ],
         "rules": {
             "no-console": "off",
             "no-var": "error",
@@ -43,13 +52,23 @@
             "flowtype/no-types-missing-file-annotation": 0
         }
     },
-    "eslintIgnore": ["**/out/*.js"],
+    "eslintIgnore": [
+        "**/out/*.js"
+    ],
     "flow-coverage-report": {
         "concurrentFiles": 1,
-        "excludeGlob": ["node_modules/**"],
-        "includeGlob": ["src/**/*.js"],
+        "excludeGlob": [
+            "node_modules/**"
+        ],
+        "includeGlob": [
+            "src/**/*.js"
+        ],
         "threshold": 90,
-        "type": ["text", "html", "json"]
+        "type": [
+            "text",
+            "html",
+            "json"
+        ]
     },
     "prettier": {
         "tabWidth": 4,
@@ -65,6 +84,7 @@
         "mariasql": "^0.2.6",
         "morgan": "^1.9.0",
         "node-mocks-http": "^1.7.0",
+        "swagger-ui-express": "^3.0.9",
         "winston": "^3.0.0-rc6"
     },
     "devDependencies": {
@@ -80,6 +100,7 @@
         "flow-remove-types": "^1.2.3",
         "flow-typed": "^2.4.0",
         "jest": "^23.1.0",
+        "newman": "^3.9.4",
         "nodemon": "^1.17.5",
         "prettier": "^1.13.3"
     }

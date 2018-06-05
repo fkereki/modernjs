@@ -34,7 +34,7 @@ app.post("/gettoken", (req, res) => {
 app.use((req, res, next) => {
     // First check for the Authorization header
     const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    if (!authHeader || !authHeader.startsWith("Bearer")) {
         return res.status(401).send("No token specified");
     }
 
