@@ -59,10 +59,7 @@
             "description": "A valid token to use for other requests"
           },
           "401": {
-            "description": "No token provided"
-          },
-          "404": {
-            "description": "Country not found"
+            "description": "Wrong user/password"
           }
         }
       }
@@ -112,13 +109,6 @@
             "required": true,
             "type": "string",
             "description": "The new region's name."
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "type": "string",
-            "description": "Authorization Token"
           },
           {
             "in": "header",

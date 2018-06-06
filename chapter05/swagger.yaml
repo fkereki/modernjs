@@ -42,7 +42,7 @@ paths:
         200:
           description: A valid token to use for other requests
         401:
-          description: "No token provided"
+          description: "Wrong user/password"
 
   /regions:
     get:
