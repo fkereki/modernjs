@@ -1,5 +1,7 @@
 **/node_modules
 **/flow-typed
 **/flow-coverage
+**/coverage
+**/build
 **/out
 **/*.env
