@@ -1,0 +1,14 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[lints]
+all=warn
+unsafe-getters-setters=off
+
+[options]
+include_warnings=true
+
+[strict]

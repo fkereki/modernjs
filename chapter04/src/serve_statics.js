@@ -7,7 +7,7 @@ const app = express();
 
 app.get("/", (req, res) => res.send("Server alive, with Express!"));
 
-app.get(
+app.use(
     "/static",
     express.static(path.join(__dirname, "../flags"), {
         immutable: true,
@@ -15,6 +15,7 @@ app.get(
     })
 );
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     console.error("Error....", err.message);
     res.status(500).send("INTERNAL SERVER ERROR");

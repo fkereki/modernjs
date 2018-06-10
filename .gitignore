@@ -2,3 +2,4 @@
 **/flow-typed
 **/flow-coverage
 **/out
+**/*.env
