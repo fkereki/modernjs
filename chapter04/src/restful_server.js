@@ -39,6 +39,8 @@ app.delete("/countries/:country", (req, res) =>
     deleteCountry(res, dbConn, req.params.country)
 );
 
+// We don't allow a POST to /countries
+
 app.put("/countries/:country", (req, res) =>
     putCountry(res, dbConn, req.params.country, req.body.name)
 );
