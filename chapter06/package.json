@@ -1,0 +1,75 @@
+{
+    "name": "chapter06",
+    "version": "0.1.0",
+    "private": true,
+    "devDependencies": {
+        "react-scripts": "1.1.4",
+        "@storybook/react": "^3.4.7",
+        "@storybook/addon-actions": "^3.4.7",
+        "@storybook/addon-links": "^3.4.7",
+        "@storybook/addons": "^3.4.7",
+        "babel-core": "^6.26.3",
+        "babel-runtime": "^6.26.0"
+    },
+    "dependencies": {
+        "react": "^16.4.0",
+        "react-dom": "^16.4.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject",
+        "storybook": "start-storybook -p 9009 -s public",
+        "build-storybook": "build-storybook -s public",
+        "flow": "flow"
+    },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "parserOptions": {
+            "ecmaVersion": 2017,
+            "sourceType": "module"
+        },
+        "env": {
+            "node": true,
+            "es6": true,
+            "jest": true
+        },
+        "extends": [
+            "eslint:recommended",
+            "plugin:flowtype/recommended"
+        ],
+        "plugins": [
+            "babel",
+            "flowtype"
+        ],
+        "rules": {
+            "no-console": "off",
+            "no-var": "error",
+            "prefer-const": "error",
+            "flowtype/no-types-missing-file-annotation": 0
+        }
+    },
+    "eslintIgnore": [
+        "**/out/*.js"
+    ],
+    "flow-coverage-report": {
+        "concurrentFiles": 1,
+        "excludeGlob": [
+            "node_modules/**"
+        ],
+        "includeGlob": [
+            "src/**/*.js"
+        ],
+        "threshold": 90,
+        "type": [
+            "text",
+            "html",
+            "json"
+        ]
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "printWidth": 75
+    }
+}
