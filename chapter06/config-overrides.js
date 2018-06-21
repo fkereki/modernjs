@@ -4,7 +4,7 @@ function overrideEslintOptions(options) {
     return options;
 }
 
-// eslint-disable-next-line no-undef
+/* global module */
 module.exports = function override(config, env) {
     config = rewireEslint(config, env, overrideEslintOptions);
     return config;
