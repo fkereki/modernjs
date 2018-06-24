@@ -1,5 +1,5 @@
 import React from "react";
-import { RegionsInformationTable } from "./regionsInformationTable";
+import { RegionsInformationTable } from "./components/regionsInformationTable";
 
 class App extends React.PureComponent {
     render() {

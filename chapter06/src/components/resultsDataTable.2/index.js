@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { ExpandableCard } from "../expandableCard.2";
+import "../general.css";
+
 export class ResultsDataTable extends React.PureComponent {
     static propTypes = {
         results: PropTypes.arrayOf(PropTypes.object).isRequired
@@ -8,16 +11,15 @@ export class ResultsDataTable extends React.PureComponent {
 
     render() {
         if (this.props.results.length === 0) {
-            return "No regions can be shown.";
+            return <div className="bordered">No regions.</div>;
         } else {
             return (
-                <div>
+                <div className="bordered">
                     {this.props.results.map(x => (
-                        <div key={x.id}>
-                            {x.name}
-                            {x.cities}
-                            {x.pop}
-                        </div>
+                        <ExpandableCard key={x.id} title={x.name}>
+                            <div>CITIES:{x.cities}</div>
+                            <div>POPULATION:{x.pop}</div>
+                        </ExpandableCard>
                     ))}
                 </div>
             );

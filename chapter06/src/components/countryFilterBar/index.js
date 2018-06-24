@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "../general.css";
+
 export class CountryFilterBar extends React.PureComponent {
     static propTypes = {
         list: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -12,7 +14,7 @@ export class CountryFilterBar extends React.PureComponent {
 
     render() {
         return (
-            <div>
+            <div className="bordered">
                 Country:&nbsp;
                 <select onChange={this.onSelect.bind(this)}>
                     <option value="">Select a country:</option>
