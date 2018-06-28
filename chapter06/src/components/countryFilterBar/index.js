@@ -1,3 +1,5 @@
+/* @flow */
+
 import React from "react";
 import PropTypes from "prop-types";
 import "../general.css";
@@ -8,7 +10,7 @@ export class CountryFilterBar extends React.PureComponent {
         onSelect: PropTypes.func.isRequired
     };
 
-    onSelect(e) {
+    onSelect(e: { target: HTMLOptionElement }) {
         this.props.onSelect(e.target.value);
     }
 

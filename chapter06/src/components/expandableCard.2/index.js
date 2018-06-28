@@ -1,3 +1,5 @@
+/* @flow */
+
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -22,7 +24,7 @@ export class ExpandableCard extends React.PureComponent {
         if (this.state.open) {
             return (
                 <div className="bordered">
-                    {this.props.title}{" "}
+                    {this.props.title}
                     <div
                         className="toggle"
                         onClick={this.toggle.bind(this)}
@@ -35,7 +37,7 @@ export class ExpandableCard extends React.PureComponent {
         } else {
             return (
                 <div className="bordered">
-                    {this.props.title}{" "}
+                    {this.props.title}
                     <div
                         className="toggle"
                         onClick={this.toggle.bind(this)}
