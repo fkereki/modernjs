@@ -13,20 +13,21 @@ storiesOf("Expandable Card", module)
 
     .add("with many lines of content", () => (
         <ExpandableCard key={229} title={"Long contents"}>
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
-            Many, many lines<br />
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
+            <div>Many, many lines</div>
         </ExpandableCard>
     ))
 
