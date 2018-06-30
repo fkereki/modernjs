@@ -32,14 +32,14 @@ storiesOf("Expandable Card", module)
     ))
 
     .add("with expandable cards inside", () => (
-        <ExpandableCard key={229} title={"Out card"}>
-            <ExpandableCard key={1} title={"First internal"}>
+        <ExpandableCard key={229} title={"Outer card"}>
+            <ExpandableCard key={1} title={"First inner card"}>
                 A single 1
             </ExpandableCard>
-            <ExpandableCard key={2} title={"Second internal"}>
-                Some twos
+            <ExpandableCard key={2} title={"Second inner card"}>
+                Some twos <br />2, 2, 2, 2...
             </ExpandableCard>
-            <ExpandableCard key={3} title={"Third internal"}>
+            <ExpandableCard key={3} title={"Third inner card"}>
                 Three threes: 333
             </ExpandableCard>
         </ExpandableCard>
