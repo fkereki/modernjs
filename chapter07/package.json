@@ -1,5 +1,5 @@
 {
-    "name": "chapter06",
+    "name": "chapter07",
     "version": "0.1.0",
     "private": true,
     "devDependencies": {
@@ -7,20 +7,15 @@
         "@storybook/addon-knobs": "^3.4.8",
         "@storybook/addon-notes": "^3.4.8",
         "@storybook/react": "^3.4.8",
-        "babel-core": "^6.26.3",
         "babel-eslint": "^8.2.5",
-        "babel-runtime": "^6.26.0",
         "eslint": "^5.0.1",
-        "eslint-plugin-babel": "^5.1.0",
+        "eslint-config-recommended": "^3.0.0",
         "eslint-plugin-flowtype": "^2.49.3",
         "eslint-plugin-react": "^7.10.0",
         "react-app-rewire-eslint": "^0.2.3",
-        "react-app-rewired": "^1.5.2",
-        "flow-bin": "^0.75.0",
-        "react-scripts": "1.1.4"
+        "react-app-rewired": "1.1.4"
     },
     "dependencies": {
-        "flow-typed": "^2.4.0",
         "react": "^16.4.1",
         "react-dom": "^16.4.1"
     },
@@ -29,24 +24,9 @@
         "build": "react-app-rewired build",
         "test": "react-app-rewired test --env=jsdom",
         "eject": "react-app-rewired eject",
-        "storybook": "start-storybook -p 9009 -s public",
-        "build-storybook": "build-storybook -s public -o out_sb",
+        "storybook": "start-storybook -p 9001 -c .storybook",
+        "build-storybook": "build-storybook -c .storybook -o out_sb",
         "flow": "flow",
         "addTypes": "flow-typed install"
-    },
-    "flow-coverage-report": {
-        "concurrentFiles": 1,
-        "excludeGlob": [
-            "node_modules/**"
-        ],
-        "includeGlob": [
-            "src/**/*.js"
-        ],
-        "threshold": 90,
-        "type": [
-            "text",
-            "html",
-            "json"
-        ]
     }
 }
