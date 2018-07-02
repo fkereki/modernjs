@@ -10,10 +10,13 @@
         "babel-eslint": "^8.2.5",
         "eslint": "^5.0.1",
         "eslint-config-recommended": "^3.0.0",
+        "eslint-plugin-babel": "^5.1.0",
         "eslint-plugin-flowtype": "^2.49.3",
         "eslint-plugin-react": "^7.10.0",
+        "flow-bin": "^0.75.0",
+        "flow-typed": "^2.4.0",
         "react-app-rewire-eslint": "^0.2.3",
-        "react-app-rewired": "1.1.4"
+        "react-app-rewired": "^1.5.2"
     },
     "dependencies": {
         "react": "^16.4.1",

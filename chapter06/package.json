@@ -14,13 +14,12 @@
         "eslint-plugin-babel": "^5.1.0",
         "eslint-plugin-flowtype": "^2.49.3",
         "eslint-plugin-react": "^7.10.0",
-        "react-app-rewire-eslint": "^0.2.3",
-        "react-app-rewired": "^1.5.2",
         "flow-bin": "^0.75.0",
-        "react-scripts": "1.1.4"
+        "flow-typed": "^2.4.0",
+        "react-app-rewire-eslint": "^0.2.3",
+        "react-app-rewired": "^1.5.2"
     },
     "dependencies": {
-        "flow-typed": "^2.4.0",
         "react": "^16.4.1",
         "react-dom": "^16.4.1"
     },
