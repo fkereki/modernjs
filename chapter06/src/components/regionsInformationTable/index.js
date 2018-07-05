@@ -5,7 +5,21 @@ import React from "react";
 import { CountryFilterBar } from "../countryFilterBar";
 import { ResultsDataTable } from "../resultsDataTable.2";
 
-export class RegionsInformationTable extends React.PureComponent {
+export class RegionsInformationTable extends React.PureComponent<
+    {},
+    {
+        countries: Array<{
+            code: string,
+            name: string
+        }>,
+        regions: Array<{
+            id: string,
+            name: string,
+            cities: number,
+            pop: number
+        }>
+    }
+> {
     state = {
         countries: [
             { code: "AR", name: "Argentine" },

@@ -6,9 +6,20 @@ import PropTypes from "prop-types";
 import { ExpandableCard } from "../expandableCard.1";
 import "../general.css";
 
-export class ResultsDataTable extends React.PureComponent {
+export class ResultsDataTable extends React.PureComponent<{
+    results: Array<{
+        id: string,
+        name: string,
+        cities: number,
+        pop: number
+    }>
+}> {
     static propTypes = {
-        results: PropTypes.arrayOf(PropTypes.object).isRequired
+        results: PropTypes.arrayOf(PropTypes.object)
+    };
+
+    static defaultProps = {
+        results: []
     };
 
     render() {

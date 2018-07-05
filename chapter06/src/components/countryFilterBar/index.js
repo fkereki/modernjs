@@ -4,7 +4,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../general.css";
 
-export class CountryFilterBar extends React.PureComponent {
+export class CountryFilterBar extends React.PureComponent<{
+    list: Array<{ code: string, name: string }>,
+    onSelect: string => void
+}> {
     static propTypes = {
         list: PropTypes.arrayOf(PropTypes.object).isRequired,
         onSelect: PropTypes.func.isRequired

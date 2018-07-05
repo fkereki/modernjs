@@ -5,7 +5,11 @@ import PropTypes from "prop-types";
 
 import "../general.css";
 
-export class ExpandableCard extends React.PureComponent {
+export class ExpandableCard extends React.PureComponent<{
+    name: string,
+    cities: number,
+    population: number
+}> {
     static propTypes = {
         name: PropTypes.string.isRequired,
         cities: PropTypes.number.isRequired,

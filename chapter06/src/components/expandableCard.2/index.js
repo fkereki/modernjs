@@ -1,12 +1,18 @@
 /* @flow */
 
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 import "../general.css";
 import "./expandableCard.css";
 
-export class ExpandableCard extends React.PureComponent {
+export class ExpandableCard extends React.PureComponent<
+    {
+        children: React.ChildrenArray<React.ChildrenArray<React.Node>>,
+        title: string
+    },
+    { open: boolean }
+> {
     static propTypes = {
         children: PropTypes.arrayOf(PropTypes.element).isRequired,
         title: PropTypes.string.isRequired
