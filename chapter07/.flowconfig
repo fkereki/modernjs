@@ -1,4 +1,5 @@
 [ignore]
+.*/node_modules/.*
 
 [include]
 
@@ -11,5 +12,6 @@ unsafe-getters-setters=off
 
 [options]
 include_warnings=true
+module.file_ext=.scss
 
 [strict]
