@@ -15,17 +15,13 @@ export class SassButton extends React.PureComponent<{
         onSelect: PropTypes.func.isRequired
     };
 
-    onSelect() {
-        this.props.onSelect();
-    }
-
     render() {
         return (
             <div
                 className={
                     this.props.normal ? "normalButton" : "alertButton"
                 }
-                onClick={this.onSelect.bind(this)}
+                onClick={this.props.onSelect}
             >
                 <span>{this.props.buttonText}</span>
             </div>

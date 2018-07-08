@@ -1,6 +1,4 @@
 @import "_constants.scss";
-// @import "_darken.scss";
-// @import "_coloredText.scss";
 @import "_mixins.scss";
 
 %baseButton {
@@ -10,6 +8,9 @@
     border-radius: 3px;
 }
 
+/*
+    A simple button for normal situations
+*/
 .normalButton {
     @extend %baseButton;
     @include darkenBackground($normalColor);
@@ -19,6 +20,9 @@
     }
 }
 
+/*
+    An alert button for warnings or errors
+*/
 .alertButton {
     @extend %baseButton;
     @include darkenBackground($alertColor);

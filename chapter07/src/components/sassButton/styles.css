@@ -4,6 +4,9 @@
   padding: 5px 10px;
   border-radius: 3px; }
 
+/*
+    A simple button for normal situations
+*/
 .normalButton {
   background-color: green; }
   .normalButton:hover {
@@ -13,6 +16,9 @@
     color: yellow;
     font-weight: bold; }
 
+/*
+    An alert button for warnings or errors
+*/
 .alertButton {
   background-color: red; }
   .alertButton:hover {
