@@ -1,0 +1,29 @@
+@import "_constants.scss";
+// @import "_darken.scss";
+// @import "_coloredText.scss";
+@import "_mixins.scss";
+
+%baseButton {
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.normalButton {
+    @extend %baseButton;
+    @include darkenBackground($normalColor);
+
+    span {
+        @include coloredBoldText($normalText);
+    }
+}
+
+.alertButton {
+    @extend %baseButton;
+    @include darkenBackground($alertColor);
+
+    span {
+        @include coloredBoldText($alertText);
+    }
+}
