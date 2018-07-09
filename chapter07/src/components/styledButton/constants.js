@@ -1,3 +1,5 @@
+/* @flow */
+
 export const NORMAL_COLOR = "green";
 export const NORMAL_TEXT = "yellow";
 
