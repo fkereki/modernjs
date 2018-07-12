@@ -34,4 +34,6 @@ i18n.use(LanguageDetector).init({
     }
 });
 
-export default i18n;
+const t = i18n.t.bind(i18n); // to allow using t(...) instead of i18n.t(...)
+
+export { i18n, t };

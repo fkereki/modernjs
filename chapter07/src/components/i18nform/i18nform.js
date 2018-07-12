@@ -3,8 +3,7 @@
 import React from "react";
 
 import "./styles.css";
-import i18n from "./i18n";
-const t = i18n.t.bind(i18n);
+import { i18n, t } from "./i18n";
 
 export class I18nForm extends React.PureComponent<
     {},
@@ -20,8 +19,17 @@ export class I18nForm extends React.PureComponent<
         thingColor: "NC"
     };
 
+    constructor(props) {
+        super(props);
+        this.rerender = () => this.forceUpdate();
+    }
+
     componentDidMount() {
-        i18n.on("languageChanged", () => this.forceUpdate());
+        i18n.on("languageChanged", this.rerender);
+    }
+
+    componentWillUnmount() {
+        i18n.off("languageChanged", this.rerender);
     }
 
     render() {
