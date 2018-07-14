@@ -13,6 +13,7 @@ import a11y from "react-a11y";
 
 a11y(React, ReactDOM, {
     rules: {
+        "avoid-positive-tabindex": "warn",
         "button-role-space": "warn",
         "hidden-uses-tabindex": "warn",
         "img-uses-alt": "warn",

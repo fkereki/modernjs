@@ -1,4 +1,4 @@
 /* @flow */
 
-import { SassButton } from "./sassButton";
+import { SassButton } from "./sassButton.a11y";
 export { SassButton };
