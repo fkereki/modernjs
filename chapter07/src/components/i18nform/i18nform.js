@@ -44,10 +44,6 @@ export class I18nForm extends React.PureComponent<
                         EN
                     </button>
                 </div>
-                <img
-                    src="http://d1ldz4te4covpm.cloudfront.net/sites/all/themes/packt_v4/images/packt-logo.svg"
-                    style={{ width: "50px", height: "25px" }}
-                />
                 <br />
                 <div>{t("please enter details")}</div>
                 <br />
