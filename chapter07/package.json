@@ -34,6 +34,7 @@
         "react-a11y": "^1.0.0",
         "react-dom": "^16.4.1",
         "react-i18next": "^7.8.0",
+        "react-responsive": "^5.0.0",
         "styled-components": "^3.3.3"
     },
     "scripts": {
