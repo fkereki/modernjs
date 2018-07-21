@@ -50,18 +50,18 @@ export class StyledButton extends React.PureComponent<{
         onSelect: PropTypes.func.isRequired
     };
 
-    keyDownAsClick(e: { keyCode: number }) {
+    keyDownAsClick = (e: { keyCode: number }) => {
         if (e.keyCode === 32 || e.keyCode === 13) {
             this.props.onSelect();
         }
-    }
+    };
 
     render() {
         return (
             <StyledDiv
                 normal={this.props.normal}
                 onClick={this.props.onSelect}
-                onKeyDown={this.keyDownAsClick.bind(this)}
+                onKeyDown={this.keyDownAsClick}
                 tabIndex="0"
                 role="button"
             >

@@ -11,11 +11,6 @@ export const makeResize = Comp => {
     return class extends React.Component {
         state = getWindowSize();
 
-        constructor(props) {
-            super(props);
-            this.componentIsResizing = this.componentIsResizing.bind(this);
-        }
-
         componentDidMount() {
             window.addEventListener("resize", this.componentIsResizing);
         }
@@ -24,9 +19,9 @@ export const makeResize = Comp => {
             window.removeEventListener("resize", this.componentIsResizing);
         }
 
-        componentIsResizing() {
+        componentIsResizing = () => {
             this.setState(getWindowSize());
-        }
+        };
 
         render() {
             return <Comp {...this.props} {...this.state} />;

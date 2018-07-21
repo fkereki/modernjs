@@ -31,7 +31,7 @@ export class RegionsInformationTable extends React.PureComponent<
         regions: []
     };
 
-    update(country: string) {
+    update = (country: string) => {
         console.log(`Country ... ${country}`);
 
         this.setState(() => ({
@@ -68,14 +68,14 @@ export class RegionsInformationTable extends React.PureComponent<
                 }
             ]
         }));
-    }
+    };
 
     render() {
         return (
             <div>
                 <CountryFilterBar
                     list={this.state.countries}
-                    onSelect={this.update.bind(this)}
+                    onSelect={this.update}
                 />
                 <ResultsDataTable results={this.state.regions} />
             </div>

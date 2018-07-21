@@ -3,7 +3,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import { CountryFilterBar } from "./";
+import { CountryFilterBar } from ".";
 
 const countries = [
     { code: "AR", name: "Argentine" },

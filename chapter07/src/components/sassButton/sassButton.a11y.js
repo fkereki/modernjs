@@ -16,11 +16,11 @@ export class SassButton extends React.PureComponent<{
         onSelect: PropTypes.func.isRequired
     };
 
-    keyDownAsClick(e: { keyCode: number }) {
+    keyDownAsClick = (e: { keyCode: number }) => {
         if (e.keyCode === 32 || e.keyCode === 13) {
             this.props.onSelect();
         }
-    }
+    };
 
     render() {
         return (
@@ -29,7 +29,7 @@ export class SassButton extends React.PureComponent<{
                     this.props.normal ? "normalButton" : "alertButton"
                 }
                 onClick={this.props.onSelect}
-                onKeyDown={this.keyDownAsClick.bind(this)}
+                onKeyDown={this.keyDownAsClick}
                 tabIndex="0"
                 role="button"
             >

@@ -22,19 +22,16 @@ export class ExpandableCard extends React.PureComponent<
         open: false
     };
 
-    toggle() {
+    toggle = () => {
         this.setState(state => ({ open: !state.open }));
-    }
+    };
 
     render() {
         if (this.state.open) {
             return (
                 <div className="bordered">
                     {this.props.title}
-                    <div
-                        className="toggle"
-                        onClick={this.toggle.bind(this)}
-                    >
+                    <div className="toggle" onClick={this.toggle}>
                         &#x25B3;
                     </div>
                     <div>{this.props.children}</div>
@@ -44,10 +41,7 @@ export class ExpandableCard extends React.PureComponent<
             return (
                 <div className="bordered">
                     {this.props.title}
-                    <div
-                        className="toggle"
-                        onClick={this.toggle.bind(this)}
-                    >
+                    <div className="toggle" onClick={this.toggle}>
                         &#x25BD;
                     </div>
                 </div>
