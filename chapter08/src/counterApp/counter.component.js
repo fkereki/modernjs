@@ -1,14 +1,14 @@
 /* @flow */
 
-import React from "react";
-import { PropTypes } from "prop-types";
+import React from "../../../../../.cache/typescript/2.9/node_modules/@types/react";
+import { PropTypes } from "../../../../../.cache/typescript/2.9/node_modules/@types/prop-types";
 
 import {
     increment,
     decrement,
     reset,
     CounterAction
-} from "./counter.actions.js";
+} from "./counter.actions";
 
 export class Counter extends React.PureComponent<{
     count: number,

@@ -5,8 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "flow-remove-types src/ -d out/",
-        "buildWithMaps":
-            "flow-remove-types src/ -d out/ --pretty --sourcemaps",
+        "buildWithMaps": "flow-remove-types src/ -d out/ --pretty --sourcemaps",
         "start": "npm run build && node out/doroundmath.js",
         "start-db": "npm run build && node out/dbaccess.js",
         "nodemon": "nodemon --watch src --delay 1 --exec npm start",
@@ -20,7 +19,11 @@
     "author": "Federico Kereki",
     "license": "ISC",
     "babel": {
-        "presets": ["env", "node", "flow"]
+        "presets": [
+            "env",
+            "node",
+            "flow"
+        ]
     },
     "eslintConfig": {
         "parserOptions": {
@@ -32,8 +35,14 @@
             "node": true,
             "es6": true
         },
-        "extends": ["eslint:recommended", "plugin:flowtype/recommended"],
-        "plugins": ["babel", "flowtype"],
+        "extends": [
+            "eslint:recommended",
+            "plugin:flowtype/recommended"
+        ],
+        "plugins": [
+            "babel",
+            "flowtype"
+        ],
         "rules": {
             "no-console": "off",
             "no-var": "error",
@@ -41,13 +50,23 @@
             "flowtype/no-types-missing-file-annotation": 0
         }
     },
-    "eslintIgnore": ["**/out/*.js"],
+    "eslintIgnore": [
+        "**/out/*.js"
+    ],
     "flow-coverage-report": {
         "concurrentFiles": 1,
-        "excludeGlob": ["node_modules/**"],
-        "includeGlob": ["src/**/*.js"],
+        "excludeGlob": [
+            "node_modules/**"
+        ],
+        "includeGlob": [
+            "src/**/*.js"
+        ],
         "threshold": 90,
-        "type": ["text", "html", "json"]
+        "type": [
+            "text",
+            "html",
+            "json"
+        ]
     },
     "prettier": {
         "tabWidth": 4,
