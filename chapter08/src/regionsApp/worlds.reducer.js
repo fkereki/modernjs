@@ -9,17 +9,20 @@ import {
     REGIONS_FAILURE
 } from "./world.actions";
 
+import type { CountriesAction, RegionsAction } from "./world.actions";
+
 // import type { CounterAction } from "./world.actions.js";
 
 export const reducer = (
     state: object = {
         // initial state
         loadingCountries: false,
+        currentCountry: "",
         countries: [],
         loadingRegions: false,
         regions: []
     },
-    action: object
+    action: CountriesAction | RegionsAction
 ) => {
     switch (action.type) {
         case COUNTRIES_REQUEST:
@@ -47,6 +50,7 @@ export const reducer = (
             return {
                 ...state,
                 loadingRegions: true,
+                currentCountry: action.country,
                 regions: []
             };
 

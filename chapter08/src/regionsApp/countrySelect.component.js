@@ -16,7 +16,9 @@ export class CountrySelect extends React.PureComponent<{
     };
 
     componentDidMount() {
-        this.props.getCountries();
+        if (this.props.list.length === 0) {
+            this.props.getCountries();
+        }
     }
 
     onSelect = (e: { target: HTMLOptionElement }) =>
