@@ -2,21 +2,10 @@
 
 import React, { Component } from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import { ConnectedLogin } from "./routingApp";
+import { ConnectedLogin, ConnectedProtectedRoutes } from "./routingApp";
 import { store } from "./routingApp/store";
-
-/* eslint-disable */
-class ProtectedRoutes extends React.Component {
-    render() {
-        return store.getState().token ? (
-            this.props.children
-        ) : (
-            <Redirect to="/login" />
-        );
-    }
-}
 
 class App extends Component<{}> {
     render() {
@@ -25,10 +14,9 @@ class App extends Component<{}> {
                 <BrowserRouter>
                     <Switch>
                         <Route path="/login" component={ConnectedLogin} />
-                        <ProtectedRoutes>
+                        <ConnectedProtectedRoutes>
                             <Route
                                 path="/"
-                                exact
                                 render={() => <div>HOME SWEET HOME</div>}
                             />
                             <Route
@@ -39,7 +27,7 @@ class App extends Component<{}> {
                                 path="/BBB"
                                 render={() => <div>BBB</div>}
                             />
-                        </ProtectedRoutes>
+                        </ConnectedProtectedRoutes>
                         <Route render={() => <div>404 ERROR!</div>} />
                     </Switch>
                 </BrowserRouter>

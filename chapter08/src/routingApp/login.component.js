@@ -1,4 +1,4 @@
-/* noaunflow */
+/* @flow */
 
 import React from "react";
 import PropTypes from "prop-types";
@@ -11,7 +11,7 @@ export class Login extends React.PureComponent<{
         onLogin: PropTypes.func.isRequired,
         logging: PropTypes.bool.isRequired,
         token: PropTypes.string.isRequired,
-        routeAfter: PropTypes.string.isRequired
+        location: PropTypes.object
     };
 
     state = {
@@ -32,7 +32,9 @@ export class Login extends React.PureComponent<{
             this.state.password &&
             this.props.token
         ) {
-            return <Redirect to={this.props.routeAfter} />;
+            return (
+                <Redirect to={this.props.location.state.from.pathname} />
+            );
         } else {
             return (
                 <div>
