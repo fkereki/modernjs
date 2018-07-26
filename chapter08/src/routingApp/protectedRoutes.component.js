@@ -12,7 +12,7 @@ export class ProtectedRoutes extends React.Component<{
     static propTypes = {
         token: PropTypes.string.isRequired,
         children: PropTypes.arrayOf(PropTypes.object).isRequired,
-        location: PropTypes.object
+        location: PropTypes.object.isRequired
     };
 
     render() {

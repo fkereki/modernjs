@@ -21,7 +21,10 @@ export const loginFailure = () => ({
 
 // Complex actions:
 
-export const attemptLogin = (user, password) => async dispatch => {
+export const attemptLogin = (
+    user: string,
+    password: string
+) => async dispatch => {
     try {
         dispatch(loginRequest());
         // the next line delays execution for 5 seconds:

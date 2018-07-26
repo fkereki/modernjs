@@ -14,19 +14,31 @@ class App extends Component<{}> {
                 <BrowserRouter>
                     <Switch>
                         <Route path="/login" component={ConnectedLogin} />
+                        <Route
+                            path="/about/:something"
+                            render={props => (
+                                <div>
+                                    About... {props.match.params.something}
+                                </div>
+                            )}
+                        />
+                        <Route
+                            path="/help"
+                            render={() => <div>Help!</div>}
+                        />
                         <ConnectedProtectedRoutes>
                             <Route
-                                path="/"
                                 exact
+                                path="/"
                                 render={() => <div>HOME SWEET HOME</div>}
                             />
                             <Route
-                                path="/AAA"
-                                render={() => <div>AAA</div>}
+                                path="/alpha"
+                                render={() => <div>Alpha page</div>}
                             />
                             <Route
-                                path="/BBB"
-                                render={() => <div>BBB</div>}
+                                path="/zulu"
+                                render={() => <div>Zulu page</div>}
                             />
                         </ConnectedProtectedRoutes>
                         <Route render={() => <div>404 ERROR!</div>} />

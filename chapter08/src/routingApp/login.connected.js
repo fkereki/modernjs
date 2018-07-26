@@ -11,6 +11,7 @@ export const ConnectedLogin = connect(
         token: state.token
     }),
     dispatch => ({
-        onLogin: (user, password) => dispatch(attemptLogin(user, password))
+        onLogin: (user: string, password: string) =>
+            dispatch(attemptLogin(user, password))
     })
 )(Login);
