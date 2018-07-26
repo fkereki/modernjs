@@ -1,5 +1,7 @@
 /* @flow */
 
+import { getCountriesAPI, getRegionsAPI } from "./serviceApi";
+
 // Countries actions
 
 export const COUNTRIES_REQUEST = "countries:request";
@@ -55,3 +57,52 @@ export const regionsFailure = () =>
     ({
         type: REGIONS_FAILURE
     }: RegionsActions);
+
+// Complex Actions:
+
+export const getCountries = () => async dispatch => {
+    try {
+        dispatch(countriesRequest());
+        // the next line delays execution for 5 seconds:
+        // await new Promise(resolve => setTimeout(resolve, 5000));
+        const result = await getCountriesAPI();
+        dispatch(countriesSuccess(result.data));
+    } catch (e) {
+        dispatch(countriesFailure());
+    }
+};
+
+export const getRegions = (country: string) => async dispatch => {
+    if (country) {
+        try {
+            dispatch(regionsRequest(country));
+            const result = await getRegionsAPI(country);
+            dispatch(regionsSuccess(result.data));
+        } catch (e) {
+            dispatch(regionsFailure());
+        }
+    } else {
+        dispatch(regionsFailure());
+    }
+};
+
+export const getRegions2 = (country: string) => async (
+    dispatch,
+    getState
+) => {
+    if (country === getState().currentCountry) {
+        console.log("Hey! You are getting the same country as before!");
+    }
+
+    if (country) {
+        try {
+            dispatch(regionsRequest(country));
+            const result = await getRegionsAPI(country);
+            dispatch(regionsSuccess(result.data));
+        } catch (e) {
+            dispatch(regionsFailure());
+        }
+    } else {
+        dispatch(regionsFailure());
+    }
+};

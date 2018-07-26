@@ -8,18 +8,14 @@ import {
     ConnectedRegionsTable
 } from "./regionsApp";
 
-import { getCountries, getRegions } from "./regionsApp/serviceApi.js";
-import { store } from "./regionsApp/store.js";
+import { store } from "./regionsApp/store";
 
 class App extends Component<{}> {
     render() {
         return (
             <Provider store={store}>
                 <Fragment>
-                    <ConnectedCountrySelect
-                        getCountries={() => store.dispatch(getCountries())}
-                        onSelect={c => store.dispatch(getRegions(c))}
-                    />
+                    <ConnectedCountrySelect />
                     <ConnectedRegionsTable />
                 </Fragment>
             </Provider>
