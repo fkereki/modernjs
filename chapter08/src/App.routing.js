@@ -17,6 +17,7 @@ class App extends Component<{}> {
                         <ConnectedProtectedRoutes>
                             <Route
                                 path="/"
+                                exact
                                 render={() => <div>HOME SWEET HOME</div>}
                             />
                             <Route

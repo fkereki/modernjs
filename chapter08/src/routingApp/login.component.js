@@ -50,11 +50,12 @@ export class Login extends React.PureComponent<{
                             onBlur={this.onPasswordBlur}
                         />
                     </div>
-                    {this.props.logging ? (
-                        "Logging in..."
-                    ) : (
-                        <button onClick={this.onLoginClick}>Login</button>
-                    )}
+                    <button
+                        onClick={this.onLoginClick}
+                        disabled={this.props.logging}
+                    >
+                        Login
+                    </button>
                 </div>
             );
         }
