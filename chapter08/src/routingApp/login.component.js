@@ -40,11 +40,13 @@ export class Login extends React.PureComponent<{
                 <div>
                     <h1>Login Form</h1>
                     <div>
-                        User:{" "}
-                        <input type="text" onBlur={this.onUserNameBlur} />
+                        User:<input
+                            type="text"
+                            onBlur={this.onUserNameBlur}
+                        />
                     </div>
                     <div>
-                        Password:{" "}
+                        Password:
                         <input
                             type="password"
                             onBlur={this.onPasswordBlur}

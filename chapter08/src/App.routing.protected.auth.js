@@ -1,9 +1,16 @@
-/* @flow */
+/* noflow */
+
+/* eslint-disable */
 
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
+import {
+    ConnectedLogin,
+    ConnectedProtectedRoutes,
+    AuthRoute
+} from "./routingApp";
 import { store } from "./routingApp/store";
 
 const Home = () => <h1>Home Sweet Home</h1>;
@@ -23,6 +30,7 @@ class App extends Component<{}> {
                         <header>
                             <nav>
                                 <Link to="/">Home</Link>&nbsp;
+                                <Link to="/login">Log in</Link>&nbsp;
                                 <Link to="/about/routing">
                                     About Routing
                                 </Link>&nbsp;
@@ -47,11 +55,18 @@ class App extends Component<{}> {
                                     </div>
                                 )}
                             />
-                            <Route path="/alpha" component={Alpha} />
-                            <Route path="/bravo" component={Bravo} />
-                            <Route path="/charlie" component={Charlie} />
-                            <Route path="/zulu" component={Zulu} />
-                            <Route component={Error404} />
+                            <Route
+                                path="/login"
+                                component={ConnectedLogin}
+                            />
+                            <AuthRoute path="/alpha" component={Alpha} />
+                            <AuthRoute path="/bravo" component={Bravo} />
+                            <AuthRoute
+                                path="/charlie"
+                                component={Charlie}
+                            />
+                            <AuthRoute path="/zulu" component={Zulu} />
+                            <AuthRoute component={Error404} />
                         </Switch>
                     </div>
                 </BrowserRouter>
