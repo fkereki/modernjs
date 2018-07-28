@@ -1,10 +1,20 @@
-/* eslint-disable */
+/* @flow */
 
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export class Auth extends React.Component {
+export class Auth extends React.Component<{
+    loginRoute: string,
+    token: string,
+    location: object
+}> {
+    static propTypes = {
+        loginRoute: PropTypes.string.isRequired,
+        token: PropTypes.string.isRequired,
+        location: PropTypes.object
+    };
+
     render() {
         const myProps = { ...this.props };
         if (!myProps.token) {

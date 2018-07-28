@@ -5,7 +5,10 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 
 export class Login extends React.PureComponent<{
-    logging: boolean
+    onLogin: func,
+    logging: boolean,
+    token: string,
+    location: object
 }> {
     static propTypes = {
         onLogin: PropTypes.func.isRequired,
