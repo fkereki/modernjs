@@ -2,7 +2,6 @@
 
 import debug from "debug";
 
-const YOUR_LOGS = "myapp"; // common namespace
 const WHAT_TO_LOG = "myapp:SERVICE:*"; // change this to suit your needs
 
 let log;
@@ -16,31 +15,38 @@ if (process.env.NODE_ENV === "development") {
     const VERBOSE_COLOR = "green";
     const DEBUG_COLOR = "gray";
 
+    // CHANGE TO: COLOR, TOPIC, MESSAGE, ...EXTRA)
+
     log = {
-        logMessage(color: string, message: string, topic: string = "-") {
-            const logger = debug(`${YOUR_LOGS}:${topic}`);
+        logMessage(
+            color: string,
+            topic: string,
+            message: any = "--",
+            ...rest: any
+        ) {
+            const logger = debug(topic);
             logger.color = color;
-            logger(message);
+            logger(message, ...rest);
         },
 
-        error(message: any, topic?: string) {
-            this.logMessage(ERROR_COLOR, message, topic);
+        error(topic: string, ...args: any) {
+            this.logMessage(ERROR_COLOR, topic, ...args);
         },
 
-        warn(message: any, topic?: string) {
-            this.logMessage(WARN_COLOR, message, topic);
+        warn(topic: string, ...args: any) {
+            this.logMessage(WARN_COLOR, topic, ...args);
         },
 
-        info(message: any, topic?: string) {
-            this.logMessage(INFO_COLOR, message, topic);
+        info(topic: string, ...args: any) {
+            this.logMessage(INFO_COLOR, topic, ...args);
         },
 
-        verbose(message: any, topic?: string) {
-            this.logMessage(VERBOSE_COLOR, message, topic);
+        verbose(topic: string, ...args: any) {
+            this.logMessage(VERBOSE_COLOR, topic, ...args);
         },
 
-        debug(message: any, topic?: string) {
-            this.logMessage(DEBUG_COLOR, message, topic);
+        debug(topic: string, ...args: any) {
+            this.logMessage(DEBUG_COLOR, topic, ...args);
         }
     };
 } else {
