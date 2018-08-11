@@ -12,7 +12,7 @@ export class RegionsTable extends React.PureComponent<{
     }>
 }> {
     static propTypes = {
-        list: PropTypes.arrayOf(PropTypes.object).isRequired
+        list: PropTypes.arrayOf(PropTypes.object)
     };
 
     static defaultProps = {
