@@ -6,6 +6,7 @@ exports[`CountrySelect renders correctly a countries dropdown 1`] = `
 >
   Country: 
   <select
+    name="selectCountry"
     onChange={[Function]}
   >
     <option

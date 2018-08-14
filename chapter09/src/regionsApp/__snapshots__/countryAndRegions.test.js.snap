@@ -12,7 +12,7 @@ exports[`App for Regions and Countries renders correctly 1`] = `
     />
   </div>
   <div>
-    Display:
+    Display: 
     <RegionsTable
       list={Array []}
     />

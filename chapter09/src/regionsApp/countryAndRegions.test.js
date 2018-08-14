@@ -18,7 +18,7 @@ class CountryAndRegions extends React.Component {
                     />
                 </div>
                 <div>
-                    Displays: <RegionsTable list={[]} />
+                    Display: <RegionsTable list={[]} />
                 </div>
             </div>
         );

@@ -6,7 +6,7 @@ import registerServiceWorker from "./registerServiceWorker";
 
 import { log } from "./logging";
 log.error("myapp:SERVICE:LOGIN", `Attempt`, { user: "FK", pass: "who?" });
-log.verbose("myapp:FORM:INITIAL", "Doing render");
+log.error("myapp:FORM:INITIAL", "Doing render");
 log.info(
     "myapp:SERVICE:ERROR_STORE",
     "Reporting problem",

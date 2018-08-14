@@ -1,21 +1,18 @@
-/* @flow */
-
 import React from "react";
-import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import TestRenderer from "react-test-renderer";
 
 import { RegionsTable } from "./regionsTable.component";
 
-Enzyme.configure({ adapter: new Adapter() });
-
 describe("RegionsTable", () => {
     it("renders correctly an empty list", () => {
-        const wrapper = Enzyme.render(<RegionsTable list={[]} />);
-        expect(wrapper.text()).toContain("No regions.");
+        const tree = TestRenderer.create(
+            <RegionsTable list={[]} />
+        ).toJSON();
+        expect(tree).toMatchSnapshot();
     });
 
     it("renders correctly a list", () => {
-        const wrapper = Enzyme.render(
+        const tree = TestRenderer.create(
             <RegionsTable
                 list={[
                     {
@@ -35,9 +32,7 @@ describe("RegionsTable", () => {
                     }
                 ]}
             />
-        );
-        expect(wrapper.text()).toContain("Montevideo");
-        expect(wrapper.text()).toContain("Maldonado");
-        expect(wrapper.text()).toContain("Cerro Largo");
+        ).toJSON();
+        expect(tree).toMatchSnapshot();
     });
 });

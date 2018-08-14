@@ -35,7 +35,7 @@ export class CountrySelect extends React.PureComponent<{
             return (
                 <div className="bordered">
                     Country:&nbsp;
-                    <select onChange={this.onSelect}>
+                    <select onChange={this.onSelect} name="selectCountry">
                         <option value="">Select a country:</option>
                         {sortedCountries.map(x => (
                             <option
