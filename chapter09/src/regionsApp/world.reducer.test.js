@@ -71,6 +71,7 @@ describe("The countries and regions reducer", () => {
             regions: []
         };
         const initialJSON = JSON.stringify(initialState);
+
         expect(
             JSON.stringify(reducer(initialState, { actionType: "other" }))
         ).toBe(initialJSON);
