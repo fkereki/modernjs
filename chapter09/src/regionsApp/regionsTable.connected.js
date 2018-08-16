@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { RegionsTable } from "./regionsTable.component";
 
-const getProps = state => ({
+export const getProps = state => ({
     list: state.regions,
     loading: state.loadingRegions
 });

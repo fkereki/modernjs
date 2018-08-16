@@ -5,7 +5,7 @@ import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import { reducer } from "./worlds.reducer.js";
+import { reducer } from "./world.reducer.js";
 
 const logger = createLogger({ duration: true });
 

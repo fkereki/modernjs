@@ -3,6 +3,6 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-import { reducer } from "./worlds.reducer.js";
+import { reducer } from "./world.reducer";
 
 export const store = createStore(reducer, applyMiddleware(thunk));
