@@ -1,12 +1,7 @@
 /* @flow */
 
-import Enzyme from "enzyme/build";
-import Adapter from "enzyme-adapter-react-16/build";
-
 import { reducer } from "./world.reducer.js";
 import { countriesRequest, regionsSuccess } from "./world.actions.js";
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe("The countries and regions reducer", () => {
     it("should process countryRequest actions", () => {

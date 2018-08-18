@@ -72,6 +72,20 @@ export const getCountries = () => async dispatch => {
     }
 };
 
+export const getCountries2 = () => async (dispatch, getState) => {
+    if (getState().countries.length) {
+        // no need to do anything!
+    } else {
+        try {
+            dispatch(countriesRequest());
+            const result = await getCountriesAPI();
+            dispatch(countriesSuccess(result.data));
+        } catch (e) {
+            dispatch(countriesFailure());
+        }
+    }
+};
+
 export const getRegions = (country: string) => async dispatch => {
     if (country) {
         try {
