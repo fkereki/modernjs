@@ -35,6 +35,7 @@ describe("getCountries", () => {
         const dispatchedActions = store.getActions();
 
         expect(getCountriesAPI).toHaveBeenCalledWith();
+
         expect(dispatchedActions.length).toBe(2);
         expect(dispatchedActions[0].type).toBe(COUNTRIES_REQUEST);
         expect(dispatchedActions[1].type).toBe(COUNTRIES_SUCCESS);
@@ -66,12 +67,14 @@ describe("getCountries", () => {
     });
 });
 
-describe("getCountries2", () => {
+describe("optimized getCountries", () => {
     it("doesn't do unneeded calls", async () => {
         const store = configureMockStore([thunk])({
             countries: [{ land: 1 }, { land: 2 }]
         });
+        jest.resetAllMocks();
         await store.dispatch(getCountries2());
+        expect(getCountriesAPI).not.toHaveBeenCalled();
         expect(store.getActions().length).toBe(0);
     });
 });
