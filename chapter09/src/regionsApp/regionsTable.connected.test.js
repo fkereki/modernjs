@@ -1,6 +1,7 @@
 /* @flow */
 
 import Enzyme from "enzyme/build";
+
 import Adapter from "enzyme-adapter-react-16/build";
 
 import { getProps } from "./regionsTable.connected.js";

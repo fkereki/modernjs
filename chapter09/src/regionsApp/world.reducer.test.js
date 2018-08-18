@@ -1,6 +1,7 @@
 /* @flow */
 
 import { reducer } from "./world.reducer.js";
+
 import { countriesRequest, regionsSuccess } from "./world.actions.js";
 
 describe("The countries and regions reducer", () => {
