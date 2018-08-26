@@ -11,14 +11,16 @@
         "node": true,
         "browser": true,
         "es6": true,
-        "jest": true
+        "jest": true,
+        "react-native/react-native": true
     },
     "extends": [
         "eslint:recommended",
         "plugin:flowtype/recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react-native/all"
     ],
-    "plugins": ["babel", "flowtype", "react"],
+    "plugins": ["babel", "flowtype", "react", "react-native"],
     "rules": {
         "no-console": "off",
         "no-var": "error",

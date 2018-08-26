@@ -1,9 +1,7 @@
-/* @flow */
-
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default class App extends React.Component<> {
+export default class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
@@ -15,12 +13,10 @@ export default class App extends React.Component<> {
     }
 }
 
-const white: string = "#fff";
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: white,
+        backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center"
     }
