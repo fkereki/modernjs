@@ -1,27 +1,17 @@
 /* @flow */
 
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Provider } from "react-redux";
 
-export default class App extends React.Component<> {
+import { store } from "./src/regionsApp/store";
+import { Main } from "./src/regionsApp/main";
+
+export default class App extends React.PureComponent<> {
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Open up App.js to start working on your app!</Text>
-                <Text>Changes you make will automatically reload.</Text>
-                <Text>Shake your phone to open the developer menu.</Text>
-            </View>
+            <Provider store={store}>
+                <Main />
+            </Provider>
         );
     }
 }
-
-const white: string = "#fff";
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: white,
-        alignItems: "center",
-        justifyContent: "center"
-    }
-});
