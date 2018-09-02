@@ -3,8 +3,8 @@
 import React from "react";
 import { Provider } from "react-redux";
 
-import { store } from "./src/adaptiveApp/store";
-import { Main } from "./src/adaptiveApp/main";
+import { store } from "./src/regionsApp/store";
+import { Main } from "./src/regionsApp/main";
 
 export default class App extends React.PureComponent<> {
     render() {

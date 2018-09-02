@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "devDependencies": {
-        "eslint": "^5.4.0",
+        "eslint": "^5.5.0",
         "eslint-config-recommended": "^3.0.0",
         "eslint-plugin-babel": "^5.1.0",
         "eslint-plugin-flowtype": "^2.50.0",

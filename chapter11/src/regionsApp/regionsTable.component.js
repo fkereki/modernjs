@@ -33,7 +33,7 @@ render() {
         return (
             <View>
                 {ordered.map(x => (
-                    <View key={`${x.countryCode}-${x.regionCode}`>
+                    <View key={`${x.countryCode}-${x.regionCode}`}>
                         <Text>{x.regionName}</Text>
                     </View>
                 ))}
