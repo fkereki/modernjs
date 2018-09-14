@@ -1,55 +1,88 @@
-/* @flow */
+/* sssssflow */
+/* eslint-disable */
 
-import React from "react";
-import PropTypes from "prop-types";
-import { View, ScrollView, Text, StyleSheet } from "react-native";
+import React, { Component } from "react";
+import { Text, View, StatusBar, Button, StyleSheet } from "react-native";
+import { createDrawerNavigator } from "react-navigation";
 
-import type { deviceDataType } from "./device";
-import { lowColor, fullSizeStyle } from "./styleConstants";
+// import { store } from "./src/routingApp/store";
 
-const ownStyle = StyleSheet.create({
-    grayish: {
-        backgroundColor: lowColor
+const myStyles = StyleSheet.create({
+    fullView: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    bigText: {
+        fontSize: 24,
+        fontWeight: "bold"
     }
 });
 
-export class RegionsTable extends React.PureComponent<{
-    deviceData: deviceDataType,
-    list: Array<{
-        regionCode: string,
-        regionName: string
-    }>
-}> {
-    static propTypes = {
-        deviceData: PropTypes.object.isRequired,
-        list: PropTypes.arrayOf(PropTypes.object).isRequired
-    };
-
-    static defaultProps = {
-        list: []
-    };
-
-    render() {
-        if (this.props.list.length === 0) {
+const makeSimpleView = text =>
+    class extends Component<{}> {
+        displayName = `View:${text}`;
+        render() {
             return (
-                <View style={ownStyle.fullSize}>
-                    <Text>No regions.</Text>
+                <View style={myStyles.fullView}>
+                    <Text style={myStyles.bigText}>{text}</Text>
                 </View>
             );
-        } else {
-            const ordered = [...this.props.list].sort(
-                (a, b) => (a.regionName < b.regionName ? -1 : 1)
-            );
-
-            return (
-                <ScrollView style={[fullSizeStyle, ownStyle.grayish]}>
-                    {ordered.map(x => (
-                        <View key={`${x.countryCode}-${x.regionCode}`}>
-                            <Text>{x.regionName}</Text>
-                        </View>
-                    ))}
-                </ScrollView>
-            );
         }
+    };
+
+const JumpButton = props => (
+    <Button
+        onPress={() => this.props.navigation.navigate("Charlie")}
+        title="Gotocharlie"
+    />
+);
+
+const Home = makeSimpleView("Home!");
+const Alpha = makeSimpleView("Alpha");
+const Bravo = makeSimpleView("Bravo");
+const Charlie = makeSimpleView("Charlie");
+const Zulu = makeSimpleView("Zulu");
+const Help = makeSimpleView("Help");
+
+const LinkJump = props => (
+    <View style={{ flex: 1 }}>
+        <Button
+            onPress={() => props.navigation.navigate("Alpha")}
+            title="Go to Alpha"
+        />
+        <Button
+            onPress={() => props.navigation.navigate("Bravo")}
+            title="Go to Bravo"
+        />
+        <Button
+            onPress={() => props.navigation.navigate("Charlie")}
+            title="Go to Charlie"
+        />
+    </View>
+);
+
+const MyDrawer = createDrawerNavigator({
+    Home: { screen: Home },
+    Alpha: { screen: Alpha },
+    Bravo: { screen: Bravo },
+    Charlie: { screen: Charlie },
+    Zulu: { screen: Zulu },
+    Help: { screen: Help },
+    LinkJump: { screen: LinkJump }
+});
+
+class App extends Component {
+    render() {
+        return (
+            <React.Fragment>
+                <StatusBar hidden />
+                <Text>Something in the top bar...!</Text>
+                <MyDrawer />
+            </React.Fragment>
+        );
     }
 }
+
+export default App;
