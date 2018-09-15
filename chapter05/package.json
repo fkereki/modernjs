@@ -79,29 +79,29 @@
         "cors": "^2.8.4",
         "dotenv": "^5.0.1",
         "express": "^4.16.3",
-        "helmet": "^3.12.1",
-        "jsonwebtoken": "^8.2.2",
+        "helmet": "^3.13.0",
+        "jsonwebtoken": "^8.3.0",
         "mariasql": "^0.2.6",
-        "morgan": "^1.9.0",
+        "morgan": "^1.9.1",
         "node-mocks-http": "^1.7.0",
-        "swagger-ui-express": "^3.0.9",
-        "winston": "^3.0.0-rc6"
+        "swagger-ui-express": "^3.0.10",
+        "winston": "^3.1.0"
     },
     "devDependencies": {
-        "babel-eslint": "^8.2.2",
-        "babel-jest": "^23.0.1",
+        "babel-eslint": "^8.2.6",
+        "babel-jest": "^23.6.0",
         "babel-preset-env": "^1.7.0",
         "babel-preset-flow": "^6.23.0",
         "eslint": "^4.19.0",
         "eslint-config-recommended": "^2.0.0",
-        "eslint-plugin-flowtype": "^2.48.0",
+        "eslint-plugin-flowtype": "^2.50.0",
         "flow-bin": "^0.68.0",
         "flow-coverage-report": "^0.5.0",
         "flow-remove-types": "^1.2.3",
-        "flow-typed": "^2.4.0",
-        "jest": "^23.1.0",
-        "newman": "^3.9.4",
-        "nodemon": "^1.17.5",
-        "prettier": "^1.13.3"
+        "flow-typed": "^2.5.1",
+        "jest": "^23.6.0",
+        "newman": "^3.10.0",
+        "nodemon": "^1.18.4",
+        "prettier": "^1.14.2"
     }
 }
