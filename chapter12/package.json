@@ -32,10 +32,7 @@
         "addTypes": "flow-typed install"
     },
     "jest": {
-        "preset": "jest-expo",
-        "testEnvironment": "jsdom",
-        "verbose": true,
-        "testURL": "http://localhost/"
+        "preset": "jest-expo"
     },
     "dependencies": {
         "axios": "^0.18.0",
