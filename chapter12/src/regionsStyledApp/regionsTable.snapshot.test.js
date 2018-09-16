@@ -5,20 +5,19 @@ import TestRenderer from "react-test-renderer";
 
 import { RegionsTable } from "./regionsTable.component";
 
+const fakeDeviceData = {
+    isTablet: false,
+    isPortrait: true,
+    height: 1000,
+    width: 720,
+    scale: 1,
+    fontScale: 1
+};
+
 describe("RegionsTable", () => {
     it("renders correctly an empty list", () => {
         const tree = TestRenderer.create(
-            <RegionsTable
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
-                list={[]}
-            />
+            <RegionsTable deviceData={fakeDeviceData} list={[]} />
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -26,14 +25,7 @@ describe("RegionsTable", () => {
     it("renders correctly a list", () => {
         const tree = TestRenderer.create(
             <RegionsTable
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
+                deviceData={fakeDeviceData}
                 list={[
                     {
                         countryCode: "UY",

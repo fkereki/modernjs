@@ -5,18 +5,20 @@ import TestRenderer from "react-test-renderer";
 
 import { CountrySelect } from "./countrySelect.component";
 
+const fakeDeviceData = {
+    isTablet: false,
+    isPortrait: true,
+    height: 1000,
+    width: 720,
+    scale: 1,
+    fontScale: 1
+};
+
 describe("CountrySelect", () => {
     it("renders correctly when loading, with no countries", () => {
         const tree = TestRenderer.create(
             <CountrySelect
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
+                deviceData={fakeDeviceData}
                 loading={true}
                 currentCountry={""}
                 onSelect={() => null}
@@ -30,14 +32,7 @@ describe("CountrySelect", () => {
     it("renders correctly a countries dropdown", () => {
         const tree = TestRenderer.create(
             <CountrySelect
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
+                deviceData={fakeDeviceData}
                 currentCountry={""}
                 loading={false}
                 onSelect={() => null}

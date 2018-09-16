@@ -22,6 +22,15 @@ const threeCountries = [
     }
 ];
 
+const fakeDeviceData = {
+    isTablet: false,
+    isPortrait: true,
+    height: 1000,
+    width: 720,
+    scale: 1,
+    fontScale: 1
+}
+
 describe("CountrySelect", () => {
     it("renders correctly when loading, with no countries", () => {
         const mockGetCountries = jest.fn();
@@ -29,14 +38,7 @@ describe("CountrySelect", () => {
 
         const wrapper = Enzyme.shallow(
             <CountrySelect
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
+                deviceData={fakeDeviceData}
                 loading={true}
                 currentCountry={""}
                 onSelect={mockOnSelect}
@@ -55,14 +57,7 @@ describe("CountrySelect", () => {
 
         const wrapper = Enzyme.shallow(
             <CountrySelect
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
+                deviceData={fakeDeviceData}
                 currentCountry={""}
                 loading={false}
                 onSelect={mockOnSelect}
@@ -84,14 +79,7 @@ describe("CountrySelect", () => {
 
         const wrapper = Enzyme.shallow(
             <CountrySelect
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
+                deviceData={fakeDeviceData}
                 loading={false}
                 currentCountry={""}
                 onSelect={mockOnSelect}
