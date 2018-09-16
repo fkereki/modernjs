@@ -8,20 +8,19 @@ import { RegionsTable } from "./regionsTable.component";
 
 Enzyme.configure({ adapter: new Adapter() });
 
+const fakeDeviceData = {
+    isTablet: false,
+    isPortrait: true,
+    height: 1000,
+    width: 720,
+    scale: 1,
+    fontScale: 1
+};
+
 describe("RegionsTable", () => {
     it("renders correctly an empty list", () => {
         const wrapper = Enzyme.shallow(
-            <RegionsTable
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
-                list={[]}
-            />
+            <RegionsTable deviceData={fakeDeviceData} list={[]} />
         );
         expect(wrapper.contains("No regions."));
     });
@@ -29,14 +28,7 @@ describe("RegionsTable", () => {
     it("renders correctly a list", () => {
         const wrapper = Enzyme.shallow(
             <RegionsTable
-                deviceData={{
-                    isTablet: false,
-                    isPortrait: true,
-                    height: 1000,
-                    width: 720,
-                    scale: 1,
-                    fontScale: 1
-                }}
+                deviceData={fakeDeviceData}
                 list={[
                     {
                         countryCode: "UY",
