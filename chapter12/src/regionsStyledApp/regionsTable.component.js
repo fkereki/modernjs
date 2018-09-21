@@ -32,12 +32,17 @@ export class RegionsTable extends React.PureComponent<{
 
     render() {
         if (this.props.list.length === 0) {
+            console.log("regionsTable: render, no regions");
             return (
                 <View style={ownStyle.fullSize}>
                     <Text>No regions.</Text>
                 </View>
             );
         } else {
+            console.log(
+                "regionsTable: render, regions length=",
+                this.props.list.length
+            );
             const ordered = [...this.props.list].sort(
                 (a, b) => (a.regionName < b.regionName ? -1 : 1)
             );

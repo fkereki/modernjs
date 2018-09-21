@@ -14,7 +14,7 @@ export type deviceDataType = {
 export const getDeviceData = (): deviceDataType => {
     const { height, width, scale, fontScale } = Dimensions.get("screen");
 
-    return {
+    const toReturn = {
         isTablet: Math.max(height, width) / Math.min(height, width) <= 1.6,
         isPortrait: height > width,
         height,
@@ -22,4 +22,8 @@ export const getDeviceData = (): deviceDataType => {
         scale,
         fontScale
     };
+
+    console.log("getDeviceData: returning", JSON.stringify(toReturn));
+
+    return toReturn;
 };

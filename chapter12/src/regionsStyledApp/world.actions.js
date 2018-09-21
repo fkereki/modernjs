@@ -77,6 +77,7 @@ export const regionsFailure = () =>
 // Complex Actions:
 
 export const getCountries = () => async dispatch => {
+    console.log("getCountries: called");
     try {
         dispatch(countriesRequest());
         const result = await getCountriesAPI();
@@ -87,27 +88,7 @@ export const getCountries = () => async dispatch => {
 };
 
 export const getRegions = (country: string) => async dispatch => {
-    if (country) {
-        try {
-            dispatch(regionsRequest(country));
-            const result = await getRegionsAPI(country);
-            dispatch(regionsSuccess(result.data));
-        } catch (e) {
-            dispatch(regionsFailure());
-        }
-    } else {
-        dispatch(regionsFailure());
-    }
-};
-
-export const getRegions2 = (country: string) => async (
-    dispatch,
-    getState
-) => {
-    if (country === getState().currentCountry) {
-        console.log("Hey! You are getting the same country as before!");
-    }
-
+    console.log("getRegions: called with ", country);
     if (country) {
         try {
             dispatch(regionsRequest(country));

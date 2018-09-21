@@ -1,25 +1,23 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+/* @flow */
 
-export default class App extends React.Component {
+import React from "react";
+import { Provider } from "react-redux";
+import Reactotron from "reactotron-react-native";
+
+import { store } from "./src/regionsStyledApp/store";
+import { ConnectedMain } from "./src/regionsStyledApp/main.connected";
+
+if (process.env.NODE_ENV === "development") {
+    Reactotron.configure({ port: 9090 })
+        .useReactNative()
+        .connect();
+}
+export default class App extends React.PureComponent<> {
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Open up App.js to start working on your app!</Text>
-                <Text>Changes you make will automatically reload.</Text>
-                <Text>Shake your phone to open the developer menu.</Text>
-            </View>
+            <Provider store={store}>
+                <ConnectedMain />
+            </Provider>
         );
     }
 }
-
-const white: string = "#fff";
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: white,
-        alignItems: "center",
-        justifyContent: "center"
-    }
-});

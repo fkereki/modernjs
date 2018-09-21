@@ -11,7 +11,10 @@ class DeviceHandler extends React.PureComponent<{
         setDevice: PropTypes.func.isRequired
     };
 
-    onLayoutHandler = () => this.props.setDevice();
+    onLayoutHandler = () => {
+        console.log("deviceHandler: onLayoutHandler called");
+        this.props.setDevice();
+    };
 
     render() {
         return <View hidden onLayout={this.onLayoutHandler} />;

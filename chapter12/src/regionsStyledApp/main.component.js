@@ -16,6 +16,11 @@ export class Main extends React.PureComponent<{
     deviceData: deviceDataType
 }> {
     render() {
+        console.log(
+            "main: render, isPortrait? ",
+            this.props.deviceData.isPortrait
+        );
+
         if (this.props.deviceData.isPortrait) {
             return (
                 <View style={{ flex: 1 }}>

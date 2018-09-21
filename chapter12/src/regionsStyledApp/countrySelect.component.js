@@ -24,21 +24,31 @@ export class CountrySelect extends React.PureComponent<{
     };
 
     componentDidMount() {
+        console.log("countrySelect: componentDidMount");
         if (this.props.list.length === 0) {
+            console.log("countrySelect: Need to get countries");
             this.props.getCountries();
         }
     }
 
-    onSelect = value => this.props.onSelect(value);
+    onSelect = (value: string) => {
+        console.log("countrySelect: onSelect called with value=", value);
+        this.props.onSelect(value);
+    };
 
     render() {
-        if (this.props.loading) {
+        if (this.props.loading || this.props.list.length === 0) {
+            console.log("countrySelect: render, no countries");
             return (
                 <View>
                     <Text>Loading countries...</Text>
                 </View>
             );
         } else {
+            console.log(
+                "countrySelect: render, countries length=",
+                this.props.list.length
+            );
             const sortedCountries = [...this.props.list].sort(
                 (a, b) => (a.countryName < b.countryName ? -1 : 1)
             );
@@ -49,7 +59,7 @@ export class CountrySelect extends React.PureComponent<{
                     <Picker
                         onValueChange={this.onSelect}
                         prompt="Country"
-                        selectedValue={this.props.currentCountry || "TV"}
+                        selectedValue={this.props.currentCountry}
                     >
                         <Picker.Item
                             key={"00"}
