@@ -27,11 +27,13 @@
         "react-native-storybook-loader": "^1.8.0",
         "react-test-renderer": "^16.5.2",
         "reactotron-react-native": "^2.1.0",
+        "reactotron-redux": "^2.1.0",
         "redux-devtools-extension": "^2.13.5"
     },
     "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
     "scripts": {
         "start": "cp App.standard.js App.js && react-native-scripts start",
+        "start-reactotron": "cp App.reactotron.js App.js && react-native-scripts start",
         "eject": "react-native-scripts eject",
         "android": "react-native-scripts android",
         "ios": "react-native-scripts ios",
