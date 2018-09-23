@@ -2,7 +2,7 @@
 
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "remote-redux-devtools-sp";
+import { composeWithDevTools } from "redux-devtools-extension"; // decia remote-redux-devtools-sp
 
 import { reducer } from "./world.reducer";
 
