@@ -3,7 +3,8 @@
 import React from "react";
 import { Provider } from "react-redux";
 
-import { store } from "./src/regionsStyledApp/store";
+import "./reactotronConfig";
+import { store } from "./src/regionsStyledApp/store.reactotron";
 import { ConnectedMain } from "./src/regionsStyledApp/main.connected";
 
 export default class App extends React.PureComponent<> {
