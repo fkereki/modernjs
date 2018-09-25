@@ -83,6 +83,7 @@ export const getCountries = () => async dispatch => {
         const result = await getCountriesAPI();
         dispatch(countriesSuccess(result.data));
     } catch (e) {
+        console.error("getCountries: failure!");
         dispatch(countriesFailure());
     }
 };
@@ -95,9 +96,11 @@ export const getRegions = (country: string) => async dispatch => {
             const result = await getRegionsAPI(country);
             dispatch(regionsSuccess(result.data));
         } catch (e) {
+            console.error("getRegions: failure with API!");
             dispatch(regionsFailure());
         }
     } else {
+        console.error("getRegions: failure, no country!");
         dispatch(regionsFailure());
     }
 };

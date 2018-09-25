@@ -3,7 +3,6 @@
 import Reactotron from "reactotron-react-native";
 import { reactotronRedux } from "reactotron-redux";
 
-//if (process.env.NODE_ENV === "development") {
 const reactotron = Reactotron.configure({
     port: 9090,
     host: "192.168.1.200"
@@ -13,15 +12,12 @@ const reactotron = Reactotron.configure({
             ignoreUrls: /\/logs$/
         }
     })
-    //  .use(asyncStorage()) // FK: IS THIS NEEDED??
-    // .use(networking())
     .use(
         reactotronRedux({
             isActionImportant: action => action.type.includes("success")
         })
     )
     .connect();
-//}
 
 Reactotron.log("A knick-knack is a thing that sits on top of a whatnot");
 Reactotron.warn("If you must make a noise, make it quietly");
