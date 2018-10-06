@@ -1,22 +1,12 @@
 /* @flow */
 
-import { getCountriesAPI, getRegionsAPI } from "./serviceApi";
-import { getDeviceData } from "./device";
-
-// Device layout action
-
-export const DEVICE_DATA = "device:data";
-
-export type deviceDataAction = {
-    type: string,
-    deviceData: any // deviceDataType
-};
-
-export const setDevice = (deviceData?: object) =>
-    ({
-        type: DEVICE_DATA,
-        deviceData: deviceData || getDeviceData()
-    }: deviceDataAction);
+import {
+    getCountriesAPI,
+    getRegionsAPI,
+    showSaveDialog,
+    writeFile,
+    notifier
+} from "./serviceApi";
 
 // Countries actions
 
@@ -27,7 +17,7 @@ export const COUNTRIES_FAILURE = "countries:failure";
 export type CountriesAction = {
     type: string,
     country?: string,
-    listOfCountries?: [object]
+    listOfCountries?: []
 };
 
 export const countriesRequest = () =>
@@ -54,53 +44,72 @@ export const REGIONS_FAILURE = "regions:failure";
 
 export type RegionsAction = {
     type: string,
-    listOfRegions?: [object]
+    listOfRegions?: []
 };
 
 export const regionsRequest = (country: string) =>
     ({
         type: REGIONS_REQUEST,
         country
-    }: RegionsActions);
+    }: RegionsAction);
 
-export const regionsSuccess = (listOfRegions: [{}]) =>
+export const regionsSuccess = (listOfRegions: []) =>
     ({
         type: REGIONS_SUCCESS,
         listOfRegions
-    }: RegionsActions);
+    }: RegionsAction);
 
 export const regionsFailure = () =>
     ({
         type: REGIONS_FAILURE
-    }: RegionsActions);
+    }: RegionsAction);
 
 // Complex Actions:
 
-export const getCountries = () => async dispatch => {
-    console.log("getCountries: called");
+export const getCountries = () => async (dispatch: ({}) => any) => {
     try {
         dispatch(countriesRequest());
+        // the next line delays execution for 5 seconds:
+        // await new Promise(resolve => setTimeout(resolve, 5000));
         const result = await getCountriesAPI();
         dispatch(countriesSuccess(result.data));
     } catch (e) {
-        console.error("getCountries: failure!");
         dispatch(countriesFailure());
     }
 };
 
-export const getRegions = (country: string) => async dispatch => {
-    console.log("getRegions: called with ", country);
+export const getRegions = (country: string) => async (
+    dispatch: ({}) => any
+) => {
     if (country) {
         try {
             dispatch(regionsRequest(country));
             const result = await getRegionsAPI(country);
             dispatch(regionsSuccess(result.data));
         } catch (e) {
-            console.error("getRegions: failure with API!");
             dispatch(regionsFailure());
         }
     } else {
-        console.error("getRegions: failure, no country!");
         dispatch(regionsFailure());
     }
+};
+
+export const saveRegionsToDisk = () => async (
+    dispatch: ({}) => any,
+    getState: () => { regions: [] }
+) => {
+    showSaveDialog((filename: string = "") => {
+        if (filename) {
+            writeFile(filename, JSON.stringify(getState().regions), e => {
+                if (e) {
+                    window.console.log(`ERROR SAVING ${filename}!`, e);
+                } else {
+                    notifier.notify({
+                        title: "Regions app",
+                        message: `Regions saved to ${filename}`
+                    });
+                }
+            });
+        }
+    });
 };

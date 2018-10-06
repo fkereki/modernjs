@@ -1,0 +1,16 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[lints]
+all=warn
+untyped-type-import=off
+unsafe-getters-setters=off
+unclear-type=off
+
+[options]
+include_warnings=true
+
+[strict]
