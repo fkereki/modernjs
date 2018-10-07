@@ -1,10 +1,15 @@
 {
     "name": "chapter13",
     "version": "0.1.0",
+    "description": "Regions app for chapter 13",
+    "homepage": "./",
+    "license": "free",
+    "author": "Federico Kereki",
     "private": true,
     "devDependencies": {
         "babel-eslint": "^10.0.1",
         "electron": "^3.0.2",
+        "electron-builder": "^20.28.4",
         "electron-devtools-installer": "^2.2.4",
         "eslint": "^5.6.1",
         "eslint-config-recommended": "^4.0.0",
@@ -39,6 +44,25 @@
         "test": "react-app-rewired test --env=jsdom",
         "eject": "react-app-rewired eject",
         "flow": "flow",
-        "addTypes": "flow-typed install"
+        "addTypes": "flow-typed install",
+        "electron-builder": "electron-builder"
+    },
+    "build": {
+        "appId": "com.electron.chapter13",
+        "compression": "normal",
+        "asar": true,
+        "extends": null,
+        "files": [
+            "electron-start.js",
+            "build/**/*",
+            "node_modules/**/*",
+            "src/regionsApp/r_icon.png"
+        ],
+        "linux": {
+            "target": "zip"
+        },
+        "win": {
+            "target": "portable"
+        }
     }
 }

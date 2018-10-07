@@ -3,5 +3,6 @@
 **/flow-coverage
 **/coverage
 **/build
+**/dist
 **/out
 **/*.env
