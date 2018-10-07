@@ -34,15 +34,11 @@ const template = [
             {
                 label: "Uruguay",
                 accelerator: "Alt+CommandOrControl+U",
-                icon:
-                    "/home/fkereki/JS_BOOK/modernjs/chapter13/src/regionsApp/flag-uruguay.png",
                 click: () => store.dispatch(getRegions("UY"))
             },
             {
                 label: "Hungary",
                 accelerator: "Alt+CommandOrControl+H",
-                icon:
-                    "/home/fkereki/JS_BOOK/modernjs/chapter13/src/regionsApp/flag-hungary.png",
                 click: () => store.dispatch(getRegions("HU"))
             }
         ]
