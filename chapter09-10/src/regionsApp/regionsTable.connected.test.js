@@ -1,7 +1,5 @@
 /* @flow */
 
-import Enzyme from "enzyme/build";
-
 import { getProps } from "./regionsTable.connected.js";
 
 describe("getProps for RegionsTable", () => {
