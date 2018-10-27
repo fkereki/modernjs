@@ -2,11 +2,7 @@
 
 import Enzyme from "enzyme/build";
 
-import Adapter from "enzyme-adapter-react-16/build";
-
 import { getProps } from "./regionsTable.connected.js";
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe("getProps for RegionsTable", () => {
     it("should extract regions and loading", () => {
