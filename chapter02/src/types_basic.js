@@ -33,7 +33,7 @@ let unsealedObject = {};
 unsealedObject.id = 229; // OK
 
 const toString2 = (x: number): string => {
-    return x + "x";
+    return x + "";
 };
 
 type numberToString = number => string;
